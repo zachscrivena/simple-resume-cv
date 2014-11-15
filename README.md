@@ -7,8 +7,8 @@ Template for a simple resume or curriculum vitae (CV), in XeLaTeX.
 
 **Sample pages (click to enlarge):**
 
-<img height="275" src="./Miscellaneous/Screenshot-01.png?raw=true" alt="Screenshot 01">
-<img height="275" src="./Miscellaneous/Screenshot-02.png?raw=true" alt="Screenshot 02">
+<img height="550" src="./Miscellaneous/Screenshot-01.png?raw=true" alt="Screenshot 01">
+<img height="550" src="./Miscellaneous/Screenshot-02.png?raw=true" alt="Screenshot 02">
 
 ## Main Features
 
