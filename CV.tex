@@ -1,0 +1,383 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SIMPLE-RESUME-CV
+%% <https://github.com/zachscrivena/simple-resume-cv>
+%% This is free and unencumbered software released into the
+%% public domain; see <http://unlicense.org> for details.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% INSTRUCTIONS FOR COMPILING THIS DOCUMENT ("CV.tex")
+%% TEX ---(XeLaTeX)---> PDF:
+%%
+%% Method 1: Use latexmk for fully automated document generation:
+%%   latexmk -xelatex "CV.tex"
+%%   (add the -pvc switch to automatically recompile on changes)
+%%
+%% Method 2: Use XeLaTeX directly:
+%%   xelatex "CV.tex"
+%%   (run multiple times to resolve cross-references if needed)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,10pt,oneside]{article}
+%\documentclass[letterpaper,10pt,oneside]{article}
+
+% Do not stop on errors during compilation.
+\nonstopmode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PREAMBLE.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{CV-Preamble.tex}
+
+% PDF settings and properties.
+\hypersetup{
+pdftitle={Resume-CV},
+pdfauthor={John Doe},
+pdfsubject={http://www.example.com/johndoe},
+pdfcreator={XeLaTeX},
+pdfproducer={},
+pdfkeywords={},
+pdfpagemode={},
+bookmarks=true,
+unicode=true,
+bookmarksopen=true,
+pdfstartview=FitH,
+pdfpagelayout=OneColumn,
+pdfpagemode=UseOutlines,
+hidelinks,
+breaklinks}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ACTUAL DOCUMENT.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%
+% TITLE BLOCK %
+%%%%%%%%%%%%%%%
+
+\title{John Doe}
+
+\begin{subtitle}
+\href{https://maps.google.com/maps?q=1+North+Avenue,+Apt+42,+Springfield,+Pennsylvania+12345,+USA}
+{17 Prime Avenue, Apt 37, Springfield, Pennsylvania 10111, USA}
+\\
+\href{mailto:johndoe@example.com}
+{johndoe@example.com}
+\,\bulletsymbol\,
++1\,(555)\,101-1001
+\,\bulletsymbol\,
+\href{http://www.example.com/johndoe}
+{http://www.example.com/johndoe}
+\end{subtitle}
+
+\begin{body}
+
+%%%%%%%%%%%%%%%
+%% EDUCATION %%
+%%%%%%%%%%%%%%%
+
+\section{Education}
+{Education}
+
+\href{http://www.example.com/my-university}
+{\textbf{First American University}},
+Springfield, Massachusetts, USA
+\par
+\entrygap
+Doctor of Philosophy (Ph.D.) in
+\href{http://www.example.com/my-department}
+{Geophysical Engineering}
+\hfill
+\datestampYMD{2009}{12}{15} --
+\datestampYMD{2014}{07}{15}
+\begin{detail}
+Thesis:
+\href{http://www.example.com/my-phd-thesis}
+{A Statistical Approach to Quantifying Climate Change}
+\par
+Adviser:
+Professor Jonathan Public
+\par
+Research areas:
+Climate change, metrology, lasers, statistics.
+\end{detail}
+\entrygap
+Master of Business Administration (M.B.A.)
+\hfill
+\datestampYMD{2008}{11}{15} --
+\datestampYMD{2009}{06}{15}
+\par
+\entrygap
+Master of Science (M.S.) in
+\href{http://www.example.com/my-department}
+{Geophysical Engineering}
+\hfill
+\datestampYMD{2006}{08}{15} --
+\datestampYMD{2008}{08}{15}
+\begin{detail}
+Cumulative GPA: 3.7 / 4.0
+\end{detail}
+
+\nextentry
+\href{http://www.example.com/my-college}
+{\textbf{Science College}},
+Springfield, Pennsylvania, USA
+\par
+Bachelor of Science (B.S.) in
+\href{http://www.example.com/my-department}
+{Geography}
+\hfill
+\datestampYMD{2002}{05}{15} --
+\datestampYMD{2005}{05}{15}
+\begin{detail}
+Graduated with College Honors.
+\par
+Cumulative GPA: 3.96 / 4.00
+\end{detail}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% RESEARCH EXPERIENCE %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Research Experience}
+{Research Experience}
+
+\href{http://www.example.com/my-institute}
+{\textbf{Institute for Advanced Research}},
+Science College
+\par
+Undergraduate Research Student, Science Department
+\hfill
+\datestampYMD{2004}{05}{15} --
+\datestampYMD{2005}{05}{15}
+\begin{detail}
+Project:
+Investigations on the Use of Lasers to Measure Climate Change
+\par
+Supervisors:
+Professor Jane Citizen and
+Dr Ann Yone
+\par
+Research areas:
+Climate change, lasers, statistical analysis, data analytics.
+\end{detail}
+
+%%%%%%%%%%%%%%%%%%
+%% PUBLICATIONS %%
+%%%%%%%%%%%%%%%%%%
+
+\section{Publications}
+{Publications}
+
+2)\bibgap
+\href{http://www.example.com/my-paper-doi-2}
+{\underline{J.~Doe}, J.~Citizen, and A.~Yone,
+``On lasers and climate change,''
+in \textit{Proceedings of the Laser Symposium},
+Las Vegas, Nevada, USA,
+\datestampYM{2007}{01}.}
+
+\nextentry
+1)\bibgap
+\href{http://www.example.com/my-paper-doi-1}
+{\underline{J.~Doe} and J.~Citizen,
+``Measuring the extent of climate change,''
+in \textit{Proceedings of the International Climate Change Conference},
+London, UK,
+\datestampYM{2005}{11}.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ACADEMIC HONORS & AWARDS %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Academic Honors \& Awards}
+{Academic Honors\newline
+\& Awards}
+
+Dean's List,
+Fall 2002 through Spring 2005,
+\hfill
+\datestampY{2002} --
+\datestampY{2005}
+\par
+Science College
+\begin{detail}
+For attaining a semester GPA of at least 3.75.
+\end{detail}
+
+\nextentry
+Undergraduate Researcher Award,
+Science College
+\hfill
+\datestampYMD{2005}{05}{15}
+\begin{detail}
+For outstanding scientific contributions in the fields of lasers and climate change.
+\end{detail}
+
+\nextentry
+International Science Scholarship,
+Global Science Foundation
+\hfill
+\datestampYMD{2001}{12}{10}
+\begin{detail}
+Provides full sponsorship with stipend for undergraduate studies. One of 42 awardees in the world.
+\end{detail}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OTHER HONORS & AWARDS %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Other Honors \& Awards}
+{Other Honors\newline
+\& Awards}
+
+Chess Tournament,
+First Prize,
+First American University
+\hfill
+\datestampYMD{2007}{03}{10}
+\begin{detail}
+Awarded at the Tenth Annual Chess Tournament held during Alumni Weekend.
+\end{detail}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PROFESSIONAL AFFILIATIONS & ACTIVITIES %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Professional Affiliations \& Activities}
+{Professional Affiliations\newline
+\& Activities}
+
+\href{http://www.example.com/my-society}
+{\textbf{Society of Professional Earth Scientists}},
+New York, USA
+\par
+Member
+\hfill
+\datestampY{2009} --
+Present
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% CAMPUS ACTIVITIES %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Campus Activities}
+{Campus Activities}
+
+\href{http://www.example.com/my-club}
+{\textbf{First Volunteers Club}},
+First American University
+\par
+President
+\hfill
+\datestampYMD{2006}{08}{15} --
+\datestampYMD{2007}{08}{15}
+\begin{detail}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae laoreet velit, vel ultricies est. Nam nec elit ac ante facilisis ultrices. Integer sit amet turpis dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at orci eu leo vulputate finibus sed et sem. Suspendisse volutpat sapien et mi cursus, gravida ornare mauris sollicitudin.
+\end{detail}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OTHER WORK EXPERIENCE %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Other Work Experience}
+{Other Work Experience}
+
+\href{http://www.example.com/my-company}
+{\textbf{Alpha Engineering Firm}},
+Oakland, Ohio, USA
+\par
+Project Officer,
+Research \& Development Division
+\hfill
+\datestampYMD{2007}{10}{15} --
+\datestampYMD{2008}{01}{15}
+\begin{detail}
+Nullam venenatis egestas nisl eget elementum. Nulla finibus justo vel turpis efficitur, non lacinia orci maximus. Proin rhoncus, felis vel hendrerit lacinia, enim ipsum ultricies massa, sit amet interdum nisi massa sit amet justo. Etiam vitae eros mollis, consectetur quam quis, molestie massa.
+\end{detail}
+
+%%%%%%%%%%%%%%%
+%% LANGUAGES %%
+%%%%%%%%%%%%%%%
+
+\section{Languages}
+{Languages}
+
+English: Native language.
+\par
+Spanish: Fluent (speaking, reading, writing).
+\par
+Latin: Intermediate (reading); basic (speaking, writing).
+
+
+%%%%%%%%%%%%
+%% SKILLS %%
+%%%%%%%%%%%%
+
+\section{Skills}
+{Skills}
+
+{\TeX}, {\LaTeX}, {\XeLaTeX},
+MATLAB,
+Mathematica,
+R,
+Adobe Photoshop,
+Adobe Illustrator.
+
+%%%%%%%%%%%%%%%
+%% INTERESTS %%
+%%%%%%%%%%%%%%%
+
+\section{Interests}
+{Interests}
+Digital photography,
+typography,
+swimming.
+
+%%%%%%%%%%%%%%%%
+%% REFERENCES %%
+%%%%%%%%%%%%%%%%
+
+\section{References}
+{References}
+
+\textbf{Professor Jonathan Public}
+\par
+Professor of Geology and Mechanical Engineering
+\begin{detail}
+First American University
+\par
+Department of Geophysical Engineering
+\par
+1000 First Avenue, Springfield, Massachusetts 22222, USA
+\par
+\href{mailto:jonathanpublic@example.com}
+{jonathanpublic@example.com}
+\,\bulletsymbol\,
++1\,(555)\,222-2222
+\end{detail}
+
+\nextentry
+\textbf{Dr Alice Bob Carol}
+\par
+Director, Research \& Development
+\begin{detail}
+Alpha Engineering Firm
+\par
+20 North Street, Oakland, Ohio 33333, USA
+\par
+\href{mailto:alicebobcarol@example.com}
+{alicebobcarol@example.com}
+\,\bulletsymbol\,
++1\,(555)\,333-3333
+\end{detail}
+
+\end{body}
+
+\end{document}
