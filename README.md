@@ -3,12 +3,12 @@ simple-resume-cv
 
 Template for a simple resume or curriculum vitae (CV), in XeLaTeX.
 
-**Compiled document: [CV.pdf](./CV.pdf?raw=true)**
+**Compiled document: [CV.pdf](https://raw.githubusercontent.com/zachscrivena/simple-resume-cv/master/CV.pdf)**
 
 **Sample pages (click to enlarge):**
 
-<img height="500" src="./Miscellaneous/Screenshot-01.png?raw=true" alt="Screenshot 01">
-<img height="500" src="./Miscellaneous/Screenshot-02.png?raw=true" alt="Screenshot 02">
+<img height="500" src="https://raw.githubusercontent.com/zachscrivena/simple-resume-cv/master/Miscellaneous/Screenshot-01.png" alt="Screenshot 01">
+<img height="500" src="https://raw.githubusercontent.com/zachscrivena/simple-resume-cv/master/Miscellaneous/Screenshot-02.png" alt="Screenshot 02">
 
 ## Main Features
 
