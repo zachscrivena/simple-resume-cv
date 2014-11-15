@@ -31,7 +31,7 @@ includefoot]{geometry}
 % and can be downloaded for free at <http://www.fontsquirrel.com/fonts/tinos>.
 % Symbol table: <http://www.fileformat.info/info/unicode/font/tinos/grid.htm>
 \setmainfont
-[Path=./Fonts/,
+[Path=./Fonts/Tinos/,
 ItalicFont=Tinos-Italic,
 BoldFont=Tinos-Bold,
 BoldItalicFont=Tinos-BoldItalic]
@@ -46,9 +46,20 @@ BoldItalicFont=Tinos-BoldItalic]
 % Small caps font: Switched to "Tinos".
 \renewcommand{\scshape}{\rmfamily}
 
+% Secondary font: "GNU FreeFont".
+% The "GNU FreeFont" fonts are released under the
+% GNU General Public License Version 3, and can be downloaded
+% for free at <https://savannah.gnu.org/projects/freefont/>.
+\newcommand{\UseSecondaryFont}{\fontspec
+[Path=./Fonts/GNUFreeFont/,
+ItalicFont=FreeSerifItalic,
+BoldFont=FreeSerifBold,
+BoldItalicFont=FreeSerifBoldItalic]
+{FreeSerif.otf}}
+
 % Symbols (unicode).
-\newcommand{\bulletsymbol}{\char"25CF}
-\newcommand{\tildesymbol}{\char"007E}
+\newcommand{\BulletSymbol}{\char"25CF}
+\newcommand{\TildeSymbol}{\char"007E}
 
 % PDF settings and properties.
 \usepackage{hyperref}
@@ -71,7 +82,7 @@ BoldItalicFont=Tinos-BoldItalic]
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 % Abbreviations for months.
-\newcommand{\longmonth}[1]{%
+\newcommand{\LongMonth}[1]{%
 \ifcase#1\relax
 \or January%
 \or February%
@@ -86,7 +97,7 @@ BoldItalicFont=Tinos-BoldItalic]
 \or November%
 \or December%
 \fi}
-\newcommand{\shortmonth}[1]{%
+\newcommand{\ShortMonth}[1]{%
 \ifcase#1\relax
 \or Jan%
 \or Feb%
@@ -107,72 +118,72 @@ BoldItalicFont=Tinos-BoldItalic]
 
 % Datestamp format: {yyyy}{MM}{dd} ---> yyyy-MM-dd (e.g., 2010-12-31).
 \ifnum\DatestampFormatSelection=1
-\newcommand{\datestampYMD}[3]{\mbox{#1-#2-#3}}
-\newcommand{\datestampYM}[2]{\mbox{#1-#2}}
-\newcommand{\datestampY}[1]{#1}
+\newcommand{\DatestampYMD}[3]{\mbox{#1-#2-#3}}
+\newcommand{\DatestampYM}[2]{\mbox{#1-#2}}
+\newcommand{\DatestampY}[1]{#1}
 \fi
 
 % Datestamp format: {yyyy}{MM}{dd} ---> MMM yyyy (e.g., Dec 2010).
 \ifnum\DatestampFormatSelection=2
-\newcommand{\datestampYMD}[3]{\mbox{\shortmonth{#2} #1}}
-\newcommand{\datestampYM}[2]{\mbox{\shortmonth{#2} #1}}
-\newcommand{\datestampY}[1]{#1}
+\newcommand{\DatestampYMD}[3]{\mbox{\ShortMonth{#2} #1}}
+\newcommand{\DatestampYM}[2]{\mbox{\ShortMonth{#2} #1}}
+\newcommand{\DatestampY}[1]{#1}
 \fi
 
 % Datestamp format: {yyyy}{MM}{dd} ---> MMMM yyyy (e.g., December 2010).
 \ifnum\DatestampFormatSelection=3
-\newcommand{\datestampYMD}[3]{\mbox{\longmonth{#2} #1}}
-\newcommand{\datestampYM}[2]{\mbox{\longmonth{#2} #1}}
-\newcommand{\datestampY}[1]{#1}
+\newcommand{\DatestampYMD}[3]{\mbox{\LongMonth{#2} #1}}
+\newcommand{\DatestampYM}[2]{\mbox{\LongMonth{#2} #1}}
+\newcommand{\DatestampY}[1]{#1}
 \fi
 
 % Datestamp format: {yyyy}{MM}{dd} ---> yyyy (e.g., 2010).
 \ifnum\DatestampFormatSelection=4
-\newcommand{\datestampYMD}[3]{#1}
-\newcommand{\datestampYM}[2]{#1}
-\newcommand{\datestampY}[1]{#1}
+\newcommand{\DatestampYMD}[3]{#1}
+\newcommand{\DatestampYM}[2]{#1}
+\newcommand{\DatestampY}[1]{#1}
 \fi
 
 % Macro: title (name).
 \renewcommand{\title}[1]{%
 \pdfbookmark{#1}{#1}%
-\begin{center}%
-\begin{Huge}%
+\par\begin{center}%
+\par\begin{Huge}%
 \textbf{#1}%
-\end{Huge}%
-\end{center}%
-\vspace{-1.75em}}
+\par\end{Huge}%
+\par\end{center}%
+\par\vspace{-1.75em}\par}
 
 % Macro: subtitle (personal information below name).
 \newenvironment{subtitle}
 {\par\begin{center}%
-\begin{footnotesize}}
+\par\begin{footnotesize}}
 {\par\end{footnotesize}%
-\end{center}}
+\par\end{center}\par}
 
 % Macro: body (rest of the document).
 \newenvironment{body}
-{\vspace{-2em}
+{\par\vspace{-1em}\par
 \begin{longtable}{p{0.15\textwidth}p{0.80\textwidth}}}
-{\end{longtable}}
+{\par\end{longtable}\par}
 
 % Macro: section (new section for Education, Research Experience, etc.).
-\renewcommand{\section}[2]{\vspace{-1em}\\\pdfbookmark{#1}{#1}\\%
+\renewcommand{\section}[2]{\\[-1em]\pdfbookmark{#1}{#1}\\%
 \fontsize{9pt}{11pt}\selectfont\raggedright\textbf{\MakeUppercase{#2}}&}
 
-% Macro: nextentry (new entry within the same section).
-\def\nextentry{\vspace{-0.5em}\\~&}
+% Macro: EntryGap (vertical gap between entries in the same section).
+\newcommand{\EntryGap}{\\[-0.5em]~&}
 
-% Macro: entrygap (small vertical gap within a long entry).
-\def\entrygap{\vspace{0.3em}}
+% Macro: SmallEntryGap (small vertical gap within a long entry).
+\newcommand{\SmallEntryGap}{\par\vspace{0.3em}\par}
 
-% Macro: bibgap (small horizontal gap for bibliographic entries).
-\def\bibgap{\hspace{0.5em}\ignorespaces}
+% Macro: BibSpace (small horizontal space in bibliographic entries).
+\newcommand{\BibSpace}{\hspace{0.5em}\ignorespaces}
 
 % Macro: detail (text in smaller font under an entry).
 \newenvironment{detail}
 {\par\begin{small}}
-{\par\end{small}}
+{\par\end{small}\par}
 
 % Macro: hide.
 \newcommand{\hide}[1]{}
