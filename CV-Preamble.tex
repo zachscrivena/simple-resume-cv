@@ -10,10 +10,10 @@
 
 % Geometry package for page margins.
 \usepackage[
-left=0.75in,
-right=0.75in,
-top=0.75in,
-bottom=0.6in,
+left=0.70in,
+right=0.70in,
+top=0.70in,
+bottom=0.55in,
 nohead,
 includefoot]{geometry}
 
@@ -58,8 +58,8 @@ BoldItalicFont=FreeSerifBoldItalic]
 {FreeSerif.otf}}
 
 % Symbols (unicode).
-\newcommand{\BulletSymbol}{\char"25CF}
-\newcommand{\TildeSymbol}{\char"007E}
+\newcommand{\BulletSymbol}{{\char"2022}}
+\newcommand{\TildeSymbol}{{\char"007E}}
 
 % PDF settings and properties.
 \usepackage{hyperref}
@@ -69,8 +69,8 @@ BoldItalicFont=FreeSerifBoldItalic]
 \def\ps@plain{%
 \def\@oddhead{}%
 \def\@evenhead{}%
-\def\@oddfoot{\footnotesize\hfill{\thepage}\hfill}%
-\def\@evenfoot{\footnotesize\hfill{\thepage}\hfill}}
+\def\@oddfoot{\footnotesize\hfill{Page}~{\thepage}~of~\pageref{LastPage}\hfill}%
+\def\@evenfoot{\footnotesize\hfill{Page}~{\thepage}~of~\pageref{LastPage}\hfill}}
 \makeatother
 
 \pagestyle{plain}
@@ -80,6 +80,11 @@ BoldItalicFont=FreeSerifBoldItalic]
 
 % Footnotes: Use symbols instead of numbers for labels.
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% Current date and time.
+\usepackage[yyyymmdd,24hr]{datetime}
+\renewcommand{\dateseparator}{-}
+% {\today}~{\currenttime}
 
 % Abbreviations for months.
 \newcommand{\LongMonth}[1]{%
@@ -146,7 +151,7 @@ BoldItalicFont=FreeSerifBoldItalic]
 
 % Macro: title (name).
 \renewcommand{\title}[1]{%
-\pdfbookmark{#1}{#1}%
+\pdfbookmark[1]{#1}{#1}%
 \par\begin{center}%
 \par\begin{Huge}%
 \textbf{#1}%
@@ -168,22 +173,40 @@ BoldItalicFont=FreeSerifBoldItalic]
 {\par\end{longtable}\par}
 
 % Macro: section (new section for Education, Research Experience, etc.).
-\renewcommand{\section}[2]{\\[-1em]\pdfbookmark{#1}{#1}\\%
-\fontsize{9pt}{11pt}\selectfont\raggedright\textbf{\MakeUppercase{#2}}&}
+\renewcommand{\section}[3]{\\[-1em]\pdfbookmark[2]{#2}{#3}\\%
+{\fontsize{9pt}{11pt}\selectfont\bfseries\raggedright%
+\MakeUppercase{#1}}&}
+
+% Macro: subsection.
+\renewcommand{\subsection}[3]{\par\vskip-\baselineskip%
+\pdfbookmark[3]{#2}{#3}\par%
+{\fontsize{8pt}{9.6pt}\selectfont\bfseries\raggedright%
+\MakeUppercase{#1}}%
+\vspace{0.1em}}
 
 % Macro: EntryGap (vertical gap between entries in the same section).
 \newcommand{\EntryGap}{\\[-0.5em]~&}
 
 % Macro: SmallEntryGap (small vertical gap within a long entry).
-\newcommand{\SmallEntryGap}{\par\vspace{0.3em}\par}
+\newcommand{\SmallEntryGap}{\par\vspace{0.25em}\par}
 
 % Macro: BibSpace (small horizontal space in bibliographic entries).
 \newcommand{\BibSpace}{\hspace{0.5em}\ignorespaces}
 
 % Macro: detail (text in smaller font under an entry).
 \newenvironment{detail}
-{\par\begin{small}}
-{\par\end{small}\par}
+{\par\begingroup\fontsize{8.6}{10.3}\selectfont}
+{\par\endgroup\par}
+
+% Macro: BulletItem.
+\newcommand{\BulletItem}{\par%
+\noindent\hangafter=1\hangindent=1.55em\ignorespaces%
+\hspace{0.8em}\BulletSymbol\hspace{0.4em}\ignorespaces}
+
+% Macro: NumberedItem.
+\newcommand{\NumberedItem}[1]{\par%
+\noindent\hangafter=1\hangindent=1.75em\ignorespaces%
+{#1)}\hspace{0.4em}\ignorespaces}
 
 % Macro: hide.
 \newcommand{\hide}[1]{}
