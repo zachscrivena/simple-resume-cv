@@ -184,14 +184,13 @@ BoldItalicFont=FreeSerifBoldItalic]
 \MakeUppercase{#1}}%
 \vspace{0.1em}}
 
+% Macro: BigEntryGap (big vertical gap between entries in the same section).
+\newcommand{\BigEntryGap}{\\[-0.5em]~&}
+\newcommand{\BigEntryGapNoBreak}{\par\vspace{0.7em}\par}
+
 % Macro: EntryGap (vertical gap between entries in the same section).
-\newcommand{\EntryGap}{\\[-0.5em]~&}
-
-% Macro: SmallEntryGap (small vertical gap within a long entry).
-\newcommand{\SmallEntryGap}{\par\vspace{0.25em}\par}
-
-% Macro: BibSpace (small horizontal space in bibliographic entries).
-\newcommand{\BibSpace}{\hspace{0.5em}\ignorespaces}
+\newcommand{\EntryGap}{\\[-0.8em]~&}
+\newcommand{\EntryGapNoBreak}{\par\vspace{0.4em}\par}
 
 % Macro: detail (text in smaller font under an entry).
 \newenvironment{detail}
@@ -199,14 +198,26 @@ BoldItalicFont=FreeSerifBoldItalic]
 {\par\endgroup\par}
 
 % Macro: BulletItem.
+\newsavebox{\BulletItemIndentation}
+\newlength{\BulletItemIndentationWidth}
 \newcommand{\BulletItem}{\par%
-\noindent\hangafter=1\hangindent=1.55em\ignorespaces%
-\hspace{0.8em}\BulletSymbol\hspace{0.4em}\ignorespaces}
+\savebox{\BulletItemIndentation}{\hspace{0.8em}\BulletSymbol\hspace{0.4em}}%
+\settowidth{\BulletItemIndentationWidth}{\usebox{\BulletItemIndentation}}%
+\noindent\hangafter=1\hangindent=\BulletItemIndentationWidth\ignorespaces%
+\usebox{\BulletItemIndentation}\ignorespaces}
 
 % Macro: NumberedItem.
+\newsavebox{\NumberedItemIndentation}
+\newlength{\NumberedItemIndentationWidth}
 \newcommand{\NumberedItem}[1]{\par%
-\noindent\hangafter=1\hangindent=1.75em\ignorespaces%
-{#1)}\hspace{0.4em}\ignorespaces}
+\savebox{\NumberedItemIndentation}{{#1}\hspace{0.4em}}%
+\settowidth{\NumberedItemIndentationWidth}{\usebox{\NumberedItemIndentation}}%
+\noindent\hangafter=1\hangindent=\NumberedItemIndentationWidth\ignorespaces%
+\usebox{\NumberedItemIndentation}\ignorespaces}
+
+% Macro: CharSpace (for aligning single-digit numbers).
+\newlength{\CharWidth}
+\newcommand{\CharSpace}{\settowidth{\CharWidth}{8}\hspace{\CharWidth}}
 
 % Macro: hide.
 \newcommand{\hide}[1]{}
