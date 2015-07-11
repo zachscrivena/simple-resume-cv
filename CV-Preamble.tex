@@ -178,7 +178,7 @@ BoldItalicFont=FreeSerifBoldItalic]
 \MakeUppercase{#1}}&}
 
 % Macro: subsection.
-\renewcommand{\subsection}[3]{\par\vskip-\baselineskip%
+\renewcommand{\subsection}[3]{\par~\vskip-\baselineskip%
 \pdfbookmark[3]{#2}{#3}\par%
 {\fontsize{8pt}{9.6pt}\selectfont\bfseries\raggedright%
 \MakeUppercase{#1}}%
@@ -215,7 +215,7 @@ BoldItalicFont=FreeSerifBoldItalic]
 \noindent\hangafter=1\hangindent=\NumberedItemIndentationWidth\ignorespaces%
 \usebox{\NumberedItemIndentation}\ignorespaces}
 
-% Macro: CharSpace (for aligning single-digit numbers).
+% Macro: CharSpace (for aligning shorter numbers).
 \newlength{\CharWidth}
 \newcommand{\CharSpace}{\settowidth{\CharWidth}{8}\hspace{\CharWidth}}
 
