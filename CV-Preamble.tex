@@ -5,86 +5,42 @@
 %% public domain; see <http://unlicense.org> for details.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Long table for page layout.
-\usepackage{longtable}
+% Run in non-stop mode.
+\ifnum\TypesetInNonStopMode=1
+\nonstopmode
+\fi
 
 % Geometry package for page margins.
 \usepackage[
 left=0.70in,
 right=0.70in,
-top=0.70in,
-bottom=0.55in,
+top=0.60in,
+bottom=0.45in,
 nohead,
 includefoot]{geometry}
-
-% Hyphenation: Disabled.
-\usepackage[none]{hyphenat}
-
-% XeLaTeX packages.
-\usepackage{fontspec}
-\defaultfontfeatures{Ligatures=TeX}
-\usepackage{xunicode}
-\usepackage{xltxtra}
-
-% Font: Use "Tinos" as the main typeface (\textnormal{}, \normalfont).
-% The "Tinos" fonts are released under the Apache License Version 2.0,
-% and can be downloaded for free at <http://www.fontsquirrel.com/fonts/tinos>.
-% Symbol table: <http://www.fileformat.info/info/unicode/font/tinos/grid.htm>
-\setmainfont
-[Path=./Fonts/Tinos/,
-ItalicFont=Tinos-Italic,
-BoldFont=Tinos-Bold,
-BoldItalicFont=Tinos-BoldItalic]
-{Tinos-Regular.ttf}
-
-% Sans-serif font: Switched to "Tinos".
-\renewcommand{\sffamily}{\rmfamily}
-
-% Typewriter (monospace) font: Switched to "Tinos".
-\renewcommand{\ttfamily}{\rmfamily}
-
-% Small caps font: Switched to "Tinos".
-\renewcommand{\scshape}{\rmfamily}
-
-% Secondary font: "GNU FreeFont".
-% The "GNU FreeFont" fonts are released under the
-% GNU General Public License Version 3, and can be downloaded
-% for free at <https://savannah.gnu.org/projects/freefont/>.
-\newcommand{\UseSecondaryFont}{\fontspec
-[Path=./Fonts/GNUFreeFont/,
-ItalicFont=FreeSerifItalic,
-BoldFont=FreeSerifBold,
-BoldItalicFont=FreeSerifBoldItalic]
-{FreeSerif.otf}}
-
-% Symbols (unicode).
-\newcommand{\BulletSymbol}{{\char"2022}}
-\newcommand{\TildeSymbol}{{\char"007E}}
 
 % PDF settings and properties.
 \usepackage{hyperref}
 
-% Headers and footers: Blank header, page number in footer.
-\makeatletter
-\def\ps@plain{%
-\def\@oddhead{}%
-\def\@evenhead{}%
-\def\@oddfoot{\footnotesize\hfill{Page}~{\thepage}~of~\pageref{LastPage}\hfill}%
-\def\@evenfoot{\footnotesize\hfill{Page}~{\thepage}~of~\pageref{LastPage}\hfill}}
-\makeatother
+% Long table for page layout.
+\usepackage{longtable}
 
-\pagestyle{plain}
+% Hyphenation: Disabled.
+\usepackage[none]{hyphenat}
 
-% Paragraph style: No indentation.
-\setlength{\parindent}{0in}
-
-% Footnotes: Use symbols instead of numbers for labels.
-\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+% Colors.
+\usepackage[usenames]{color}
+% \definecolor{MyDarkBlue}{RGB}{0,90,160}
+% {\color{MyDarkBlue}This text is dark blue}
 
 % Current date and time.
 \usepackage[yyyymmdd,24hr]{datetime}
 \renewcommand{\dateseparator}{-}
+\settimeformat{xxivtime}
 % {\today}~{\currenttime}
+
+% Timestamp.
+\newcommand{\Timestamp}{{\yyyymmdddate\today}~{\currenttime}}
 
 % Abbreviations for months.
 \newcommand{\LongMonth}[1]{%
@@ -149,22 +105,104 @@ BoldItalicFont=FreeSerifBoldItalic]
 \newcommand{\DatestampY}[1]{#1}
 \fi
 
+% XeLaTeX packages.
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+% Font: Use "Tinos" as the main typeface (\textnormal{}, \normalfont).
+% The "Tinos" fonts are released under the Apache License Version 2.0,
+% and can be downloaded for free at <http://www.fontsquirrel.com/fonts/tinos>.
+% Symbol table: <http://www.fileformat.info/info/unicode/font/tinos/grid.htm>
+\setmainfont
+[Path=./Fonts/Tinos/,
+ItalicFont=Tinos-Italic,
+BoldFont=Tinos-Bold,
+BoldItalicFont=Tinos-BoldItalic]
+{Tinos-Regular.ttf}
+
+% Secondary font: "GNU FreeFont".
+% The "GNU FreeFont" fonts are released under the
+% GNU General Public License Version 3, and can be downloaded
+% for free at <https://savannah.gnu.org/projects/freefont/>.
+\newcommand{\UseSecondaryFont}{\fontspec
+[Path=./Fonts/GNUFreeFont/,
+ItalicFont=FreeSerifItalic,
+BoldFont=FreeSerifBold,
+BoldItalicFont=FreeSerifBoldItalic]
+{FreeSerif.otf}}
+
+% Sans-serif font: Changed to "Tinos".
+\renewcommand{\sffamily}{\rmfamily}
+
+% Typewriter (monospace) font: Changed to "Tinos".
+\renewcommand{\ttfamily}{\rmfamily}
+
+% Small caps font: Changed to "Tinos".
+\renewcommand{\scshape}{\rmfamily}
+%\renewcommand{\textsc}[1]{\textbf{\MakeUppercase{#1}}}
+
+% Font styles.
+\newcommand{\UseHeadingFont}{\normalfont}
+\newcommand{\UseHeaderFooterFont}{\UseHeadingFont\fontsize{8.2pt}{9.5pt}\selectfont}
+\newcommand{\UseNoteFont}{\UseHeadingFont\fontsize{8pt}{9.6pt}\selectfont}
+\newcommand{\UseTitleFont}{\UseHeadingFont\fontsize{28pt}{33.6pt}\selectfont\bfseries}
+\newcommand{\UseSubTitleFont}{\normalfont\fontsize{8.6pt}{10.3pt}\selectfont}
+\newcommand{\UseSectionFont}{\UseHeadingFont\fontsize{9pt}{11pt}\selectfont\bfseries}
+\newcommand{\UseSubSectionFont}{\UseHeadingFont\fontsize{8.6pt}{10.3pt}\selectfont\bfseries}
+\newcommand{\UseDetailFont}{\normalfont\fontsize{8.6pt}{10.3pt}\selectfont}
+
+% Symbols (unicode).
+\newcommand{\BulletSymbol}{{\normalfont\fontsize{6.5}{7.8}\selectfont\raisebox{0.17em}{\char"25A0}}}
+\newcommand{\SubBulletSymbol}{{\normalfont\fontsize{6}{7.2}\selectfont\raisebox{0.17em}{\char"25CF}}}
+\newcommand{\TildeSymbol}{{\normalfont\char"007E}}
+
+% Headers and footers: Blank header, page number in footer.
+\ifnum\TypesetInDraftMode=0
+\newcommand{\HeaderText}{}
+\newcommand{\FooterText}{\UseHeaderFooterFont\hfill%
+{Page}~{\thepage}~of~\pageref{LastPage}%
+\hfill}
+\else
+\newcommand{\HeaderText}{}
+\newcommand{\FooterText}{\UseHeaderFooterFont%
+\hphantom{DRAFT~\Timestamp}\hfill%
+{Page}~{\thepage}~of~\pageref{LastPage}%
+\hfill{\color{red}DRAFT~\Timestamp}}
+\fi
+
+\makeatletter
+\def\ps@plain{%
+\def\@oddhead{\HeaderText}%
+\def\@evenhead{\HeaderText}%
+\def\@oddfoot{\FooterText}%
+\def\@evenfoot{\FooterText}}
+\makeatother
+
+\pagestyle{plain}
+
+% Paragraph style.
+\setlength{\parindent}{0in} % No indentation at the beginning of each paragraph.
+\setlength{\parskip}{0in} % No vertical space between paragraphs.
+
+% Footnotes: Use symbols instead of numbers for labels.
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
 % Macro: title (name).
 \renewcommand{\title}[1]{%
 \pdfbookmark[1]{#1}{#1}%
 \par\begin{center}%
-\par\begin{Huge}%
-\textbf{#1}%
-\par\end{Huge}%
+\par\UseTitleFont%
+{#1}%
 \par\end{center}%
 \par\vspace{-1.75em}\par}
 
 % Macro: subtitle (personal information below name).
 \newenvironment{subtitle}
 {\par\begin{center}%
-\par\begin{footnotesize}}
-{\par\end{footnotesize}%
-\par\end{center}\par}
+\par\UseSubTitleFont}
+{\par\end{center}\par}
 
 % Macro: body (rest of the document).
 \newenvironment{body}
@@ -174,48 +212,74 @@ BoldItalicFont=FreeSerifBoldItalic]
 
 % Macro: section (new section for Education, Research Experience, etc.).
 \renewcommand{\section}[3]{\\[-1em]\pdfbookmark[2]{#2}{#3}\\%
-{\fontsize{9pt}{11pt}\selectfont\bfseries\raggedright%
-\MakeUppercase{#1}}&}
+{\UseSectionFont\raggedright\MakeUppercase{#1}}%
+&}
 
 % Macro: subsection.
 \renewcommand{\subsection}[3]{\par~\vskip-\baselineskip%
 \pdfbookmark[3]{#2}{#3}\par%
-{\fontsize{8pt}{9.6pt}\selectfont\bfseries\raggedright%
-\MakeUppercase{#1}}%
-\vspace{0.1em}}
+{\UseSubSectionFont\raggedright\MakeUppercase{#1}}%
+\vspace{0.225\baselineskip}}
 
-% Macro: BigEntryGap (big vertical gap between entries in the same section).
-\newcommand{\BigEntryGap}{\\[-0.5em]~&}
-\newcommand{\BigEntryGapNoBreak}{\par\vspace{0.7em}\par}
+% Macro: BigGap, BigGapNoBreak (big vertical gap between items in the same section).
+\newcommand{\BigGap}{\\[-1.75mm]~&}
+\newcommand{\BigGapNoBreak}{\par\vspace{2.45mm}\par}
 
-% Macro: EntryGap (vertical gap between entries in the same section).
-\newcommand{\EntryGap}{\\[-0.8em]~&}
-\newcommand{\EntryGapNoBreak}{\par\vspace{0.4em}\par}
+% Macro: Gap, GapNoBreak (vertical gap between items in the same section).
+\newcommand{\Gap}{\\[-3.5mm]~&}
+\newcommand{\GapNoBreak}{\par\vspace{0.7mm}\par}
 
-% Macro: detail (text in smaller font under an entry).
+% Macro: detail (text in smaller font under an item).
 \newenvironment{detail}
-{\par\begingroup\fontsize{8.6}{10.3}\selectfont}
+{\par\begingroup\UseDetailFont}
 {\par\endgroup\par}
 
 % Macro: BulletItem.
 \newsavebox{\BulletItemIndentation}
 \newlength{\BulletItemIndentationWidth}
 \newcommand{\BulletItem}{\par%
-\savebox{\BulletItemIndentation}{\hspace{0.8em}\BulletSymbol\hspace{0.4em}}%
+\savebox{\BulletItemIndentation}{\hspace{1.5mm}\BulletSymbol\hspace{1.25mm}}%
 \settowidth{\BulletItemIndentationWidth}{\usebox{\BulletItemIndentation}}%
 \noindent\hangafter=1\hangindent=\BulletItemIndentationWidth\ignorespaces%
 \usebox{\BulletItemIndentation}\ignorespaces}
+
+% Macro: SubBulletItem.
+\newsavebox{\SubBulletItemIndentation}
+\newlength{\SubBulletItemIndentationWidth}
+\newcommand{\SubBulletItem}{\par%
+\savebox{\SubBulletItemIndentation}{\hspace{5.6mm}\SubBulletSymbol\hspace{1.25mm}}%
+\settowidth{\SubBulletItemIndentationWidth}{\usebox{\SubBulletItemIndentation}}%
+\noindent\hangafter=1\hangindent=\SubBulletItemIndentationWidth\ignorespaces%
+\usebox{\SubBulletItemIndentation}\ignorespaces}
+
+% Macro: Item.
+\newsavebox{\ItemIndentation}
+\newlength{\ItemIndentationWidth}
+\newcommand{\Item}{\par%
+\savebox{\ItemIndentation}{\hphantom{\hspace{1.5mm}\BulletSymbol\hspace{1.25mm}}}%
+\settowidth{\ItemIndentationWidth}{\usebox{\ItemIndentation}}%
+\noindent\hangafter=1\hangindent=\ItemIndentationWidth\ignorespaces%
+\usebox{\ItemIndentation}\ignorespaces}
+
+% Macro: SubItem.
+\newsavebox{\SubItemIndentation}
+\newlength{\SubItemIndentationWidth}
+\newcommand{\SubItem}{\par%
+\savebox{\SubItemIndentation}{\hphantom{\hspace{1.5mm}\BulletSymbol\hspace{1.25mm}}}%
+\settowidth{\SubItemIndentationWidth}{\usebox{\SubItemIndentation}}%
+\noindent\hangafter=1\hangindent=\SubItemIndentationWidth\ignorespaces%
+\usebox{\SubItemIndentation}\ignorespaces}
 
 % Macro: NumberedItem.
 \newsavebox{\NumberedItemIndentation}
 \newlength{\NumberedItemIndentationWidth}
 \newcommand{\NumberedItem}[1]{\par%
-\savebox{\NumberedItemIndentation}{{#1}\hspace{0.4em}}%
+\savebox{\NumberedItemIndentation}{{#1}\hspace{2.3mm}}%
 \settowidth{\NumberedItemIndentationWidth}{\usebox{\NumberedItemIndentation}}%
 \noindent\hangafter=1\hangindent=\NumberedItemIndentationWidth\ignorespaces%
 \usebox{\NumberedItemIndentation}\ignorespaces}
 
-% Macro: CharSpace (for aligning shorter numbers).
+% Macro: CharSpace (for aligning single-digit numbers).
 \newlength{\CharWidth}
 \newcommand{\CharSpace}{\settowidth{\CharWidth}{8}\hspace{\CharWidth}}
 

@@ -13,6 +13,7 @@ Template for a simple resume or curriculum vitae (CV), in XeLaTeX.
 
 <img height="500" src="https://raw.githubusercontent.com/zachscrivena/simple-resume-cv/master/Miscellaneous/Screenshot-01.png" alt="Screenshot 01">
 <img height="500" src="https://raw.githubusercontent.com/zachscrivena/simple-resume-cv/master/Miscellaneous/Screenshot-02.png" alt="Screenshot 02">
+<img height="500" src="https://raw.githubusercontent.com/zachscrivena/simple-resume-cv/master/Miscellaneous/Screenshot-03.png" alt="Screenshot 03">
 
 ## Main Features
 
@@ -26,13 +27,13 @@ Template for a simple resume or curriculum vitae (CV), in XeLaTeX.
 
 The main XeLaTeX source file is `CV.tex`; the compiled document is `CV.pdf`.
 
-Instructions for compiling the document (TEX &rarr;(XeLaTeX)&rarr; PDF):
+Instructions for compiling the document (TeX &rarr;(XeLaTeX)&rarr; PDF):
 
-- **Method 1:** Use latexmk for fully automated document generation:
+- **Method 1:** Use `latexmk` for fully automated document generation:
 	- `latexmk -xelatex "CV.tex"`
 	(add the `-pvc` switch to automatically recompile on changes)
 
-- **Method 2:** Use XeLaTeX directly:
+- **Method 2:** Use `XeLaTeX` directly:
 	- `xelatex "CV.tex"`
 	(run multiple times to resolve cross-references if needed)
 

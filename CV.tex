@@ -10,7 +10,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% INSTRUCTIONS FOR COMPILING THIS DOCUMENT ("CV.tex")
-%% TEX ---(XeLaTeX)---> PDF:
+%% TeX ---(XeLaTeX)---> PDF:
 %%
 %% Method 1: Use latexmk for fully automated document generation:
 %%   latexmk -xelatex "CV.tex"
@@ -21,11 +21,15 @@
 %%   (run multiple times to resolve cross-references if needed)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[a4paper,10pt,oneside]{article}
-%\documentclass[letterpaper,10pt,oneside]{article}
+% \documentclass[a4paper,10pt,oneside]{article}
+\documentclass[letterpaper,10pt,oneside]{article}
 
-% Do not stop on errors during compilation.
-\nonstopmode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TYPESETTING OPTIONS.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\TypesetInNonStopMode}{1}
+\newcommand{\TypesetInDraftMode}{0}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PREAMBLE.
@@ -34,14 +38,16 @@
 \input{CV-Preamble.tex}
 
 % CV Info (to be customized).
+\newcommand{\CVAuthor}{John Doe}
 \newcommand{\CVTitle}{John Doe's CV for Acme Corporation}
 \newcommand{\CVNote}{CV compiled on {\today} for Acme Corporation}
+\newcommand{\CVWebpage}{http://www.example.com/johndoe}
 
 % PDF settings and properties.
 \hypersetup{
 pdftitle={\CVTitle},
-pdfauthor={John Doe},
-pdfsubject={http://www.example.com/johndoe},
+pdfauthor={\CVAuthor},
+pdfsubject={\CVWebpage},
 pdfcreator={XeLaTeX},
 pdfproducer={},
 pdfkeywords={},
@@ -55,6 +61,9 @@ pdfpagemode=UseOutlines,
 hidelinks,
 breaklinks}
 
+% Shorthand.
+\newcommand{\CodeCommand}[1]{\mbox{\textbf{\textbackslash{#1}}}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ACTUAL DOCUMENT.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,7 +74,7 @@ breaklinks}
 % TITLE BLOCK %
 %%%%%%%%%%%%%%%
 
-\title{John Doe}
+\title{\CVAuthor}
 
 \begin{subtitle}
 \href{https://www.google.com/maps/place/17+Prime+Avenue,+Springfield,+Pennsylvania+10111,+USA}
@@ -73,11 +82,11 @@ breaklinks}
 \par
 \href{mailto:johndoe@example.com}
 {johndoe@example.com}
-\,\BulletSymbol\,
+\,\SubBulletSymbol\,
 +1\,(555)\,101-1001
-\,\BulletSymbol\,
-\href{http://www.example.com/johndoe}
-{http://www.example.com/johndoe}
+\,\SubBulletSymbol\,
+\href{\CVWebpage}
+{\CVWebpage}
 \end{subtitle}
 
 \begin{body}
@@ -95,7 +104,8 @@ breaklinks}
 {\textbf{First American University}},
 Springfield, Massachusetts, USA
 
-\EntryGapNoBreak
+\GapNoBreak
+\BulletItem
 Doctor of Philosophy (Ph.D.) in
 \href{http://www.example.com/my-department}
 {Geophysical Engineering}
@@ -103,25 +113,27 @@ Doctor of Philosophy (Ph.D.) in
 \DatestampYMD{2009}{12}{15} --
 \DatestampYMD{2014}{07}{15}
 \begin{detail}
-\BulletItem
+\SubBulletItem
 Thesis:
 \href{http://www.example.com/my-phd-thesis}
 {A Statistical Approach to Quantifying Climate Change}
-\BulletItem
+\SubBulletItem
 Adviser:
 Professor Jonathan Public
-\BulletItem
+\SubBulletItem
 Research areas:
 Climate change, metrology, lasers, statistics.
 \end{detail}
 
-\EntryGapNoBreak
+\GapNoBreak
+\BulletItem
 Master of Business Administration (M.B.A.)
 \hfill
 \DatestampYMD{2008}{11}{15} --
 \DatestampYMD{2009}{06}{15}
 
-\EntryGapNoBreak
+\GapNoBreak
+\BulletItem
 Master of Science (M.S.) in
 \href{http://www.example.com/my-department}
 {Geophysical Engineering}
@@ -129,15 +141,17 @@ Master of Science (M.S.) in
 \DatestampYMD{2006}{08}{15} --
 \DatestampYMD{2008}{08}{15}
 \begin{detail}
-\BulletItem
+\SubBulletItem
 Cumulative GPA: 3.7 / 4.0
 \end{detail}
 
-\BigEntryGap
+\BigGap
 \href{http://www.example.com/my-college}
 {\textbf{Science College}},
 Springfield, Pennsylvania, USA
-\par
+
+\GapNoBreak
+\BulletItem
 Bachelor of Science (B.S.) in
 \href{http://www.example.com/my-department}
 {Geography}
@@ -145,9 +159,9 @@ Bachelor of Science (B.S.) in
 \DatestampYMD{2002}{05}{15} --
 \DatestampYMD{2005}{05}{15}
 \begin{detail}
-\BulletItem
+\SubBulletItem
 Graduated with College Honors.
-\BulletItem
+\SubBulletItem
 Cumulative GPA: 3.96 / 4.00
 \end{detail}
 
@@ -163,20 +177,22 @@ Cumulative GPA: 3.96 / 4.00
 \href{http://www.example.com/my-institute}
 {\textbf{Institute for Advanced Research}},
 Science College
-\par
+
+\GapNoBreak
+\BulletItem
 Undergraduate Research Student, Science Department
 \hfill
 \DatestampYMD{2004}{05}{15} --
 \DatestampYMD{2005}{05}{15}
 \begin{detail}
-\BulletItem
+\SubBulletItem
 Project:
 Investigations on the Use of Lasers to Measure Climate Change
-\BulletItem
+\SubBulletItem
 Supervisors:
 Professor Jane Citizen and
 Dr Ann Yone
-\BulletItem
+\SubBulletItem
 Research areas:
 Climate change, lasers, statistical analysis, data analytics.
 \end{detail}
@@ -195,9 +211,9 @@ Climate change, lasers, statistical analysis, data analytics.
 {Journals}
 {PDF:Journals}
 
-\EntryGapNoBreak
+\GapNoBreak
 \NumberedItem{[11]}
-\href{http://www.example.com/my-paper-doi-4}
+\href{http://www.example.com/my-paper-doi-5}
 {\underline{J.~Doe}, J.~Citizen, and A.~Yone,
 ``On lasers and climate change,''
 \textit{Journal of Science},
@@ -207,9 +223,9 @@ pp.~4123--4133,
 \DatestampYM{2008}{02}.}
 
 % Note the use of {\CharSpace} for aligning shorter numbers.
-\EntryGap
+\Gap
 \NumberedItem{{\CharSpace}[1]}
-\href{http://www.example.com/my-paper-doi-3}
+\href{http://www.example.com/my-paper-doi-4}
 {\underline{J.~Doe} and J.~Citizen,
 ``Measuring the extent of climate change,''
 \textit{Global Scientific Journal},
@@ -218,23 +234,32 @@ no.~4,
 pp.~330--352,
 \DatestampYM{2006}{12}.}
 
-\BigEntryGap
+\BigGap
 \subsection
 {Conferences}
 {Conferences}
 {PDF:Conferences}
 
-\EntryGap
+\GapNoBreak
 \NumberedItem{[11]}
-\href{http://www.example.com/my-paper-doi-2}
+\href{http://www.example.com/my-paper-doi-3}
 {\underline{J.~Doe}, J.~Citizen, and A.~Yone,
 ``On lasers and climate change,''
 in \textit{Proceedings of the Laser Symposium},
 Las Vegas, Nevada, USA,
 \DatestampYM{2007}{01}.}
 
+\Gap
+\NumberedItem{[10]}
+\href{http://www.example.com/my-paper-doi-2}
+{A.~Yone and \underline{J.~Doe},
+``Climate change and general relativity,''
+in \textit{Proceedings of the International Astronomical Conference},
+Sydney, Australia,
+\DatestampYM{2006}{8}.}
+
 % Note the use of {\CharSpace} for aligning shorter numbers.
-\EntryGap
+\Gap
 \NumberedItem{{\CharSpace}[1]}
 \href{http://www.example.com/my-paper-doi-1}
 {\underline{J.~Doe} and J.~Citizen,
@@ -243,62 +268,68 @@ in \textit{Proceedings of the International Climate Change Conference},
 London, UK,
 \DatestampYM{2005}{11}.}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% ACADEMIC HONORS & AWARDS %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% ACADEMIC AWARDS %%
+%%%%%%%%%%%%%%%%%%%%%
 
 \section
-{Academic Honors\newline
-\& Awards}
-{Academic Honors \& Awards}
-{PDF:AcademicHonorsAwards}
+{Academic Awards}
+{Academic Awards}
+{PDF:AcademicAwards}
 
+\BulletItem
 Dean's List,
 Fall 2002 through Spring 2005,
+Science College
 \hfill
 \DatestampY{2002} --
 \DatestampY{2005}
-\par
-Science College
 \begin{detail}
+\SubItem
 For attaining a semester GPA of at least 3.75.
 \end{detail}
 
-\EntryGap
+\Gap
+\BulletItem
 Undergraduate Researcher Award,
 Science College
 \hfill
 \DatestampYMD{2005}{05}{15}
 \begin{detail}
+\SubItem
 For outstanding scientific contributions in the fields of lasers and climate change.
 \end{detail}
 
-\EntryGap
+\Gap
+\BulletItem
 International Science Scholarship,
-Global Science Foundation
 \hfill
 \DatestampYMD{2001}{12}{10}
+\newline
+Global Science, Technology, Engineering, and Mathematics Foundation
 \begin{detail}
-Provides full sponsorship with stipend for undergraduate studies.
+\SubItem
+Full-tuition scholarship with stipend for undergraduate studies.
 One of 42 awardees in the world.
 \end{detail}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% OTHER HONORS & AWARDS %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+%% OTHER AWARDS %%
+%%%%%%%%%%%%%%%%%%
 
 \section
-{Other Honors\newline
-\& Awards}
-{Other Honors \& Awards}
-{PDF:OtherHonorsAwards}
+{Other Awards}
+{Other Awards}
+{PDF:OtherAwards}
 
+\BulletItem
 Chess Tournament,
 First Prize,
 First American University
 \hfill
 \DatestampYMD{2007}{03}{10}
 \begin{detail}
+\SubItem
 Awarded at the Tenth Annual Chess Tournament held during Alumni Weekend.
 \end{detail}
 
@@ -315,7 +346,9 @@ Awarded at the Tenth Annual Chess Tournament held during Alumni Weekend.
 \href{http://www.example.com/my-society}
 {\textbf{Society of Professional Earth Scientists}},
 New York, USA
-\par
+
+\GapNoBreak
+\BulletItem
 Member
 \hfill
 \DatestampY{2009} --
@@ -333,19 +366,21 @@ Present
 \href{http://www.example.com/my-club}
 {\textbf{First Volunteers Club}},
 First American University
-\par
+
+\GapNoBreak
+\BulletItem
 President
 \hfill
 \DatestampYMD{2006}{08}{15} --
 \DatestampYMD{2007}{08}{15}
 \begin{detail}
-\BulletItem
+\SubBulletItem
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-\BulletItem
+\SubBulletItem
 Curabitur vitae laoreet velit, vel ultricies est. Nam nec elit ac ante facilisis ultrices.
-\BulletItem
+\SubBulletItem
 Integer sit amet turpis dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at orci eu leo vulputate finibus sed et sem.
-\BulletItem
+\SubBulletItem
 Suspendisse volutpat sapien et mi cursus, gravida ornare mauris sollicitudin.
 \end{detail}
 
@@ -362,18 +397,20 @@ Experience}
 \href{http://www.example.com/my-company}
 {\textbf{Alpha Engineering Firm}},
 Oakland, Ohio, USA
-\par
+
+\GapNoBreak
+\BulletItem
 Project Officer,
 Research \& Development Division
 \hfill
 \DatestampYMD{2007}{10}{15} --
 \DatestampYMD{2008}{01}{15}
 \begin{detail}
-\BulletItem
+\SubBulletItem
 Nullam venenatis egestas nisl eget elementum.
-\BulletItem
+\SubBulletItem
 Nulla finibus justo vel turpis efficitur, non lacinia orci maximus. Proin rhoncus, felis vel hendrerit lacinia, enim ipsum ultricies massa, sit amet interdum nisi massa sit amet justo.
-\BulletItem
+\SubBulletItem
 Etiam vitae eros mollis, consectetur quam quis, molestie massa.
 \end{detail}
 
@@ -386,12 +423,16 @@ Etiam vitae eros mollis, consectetur quam quis, molestie massa.
 {Languages}
 {PDF:Languages}
 
+\BulletItem
 English: Native language.
-\par
-Spanish: Fluent (speaking, reading, writing).
-\par
-Latin: Intermediate (reading); basic (speaking, writing).
 
+\GapNoBreak
+\BulletItem
+Spanish: Fluent (speaking, reading, writing).
+
+\GapNoBreak
+\BulletItem
+Latin: Intermediate (reading); basic (speaking, writing).
 
 %%%%%%%%%%%%
 %% SKILLS %%
@@ -431,35 +472,203 @@ swimming.
 {References}
 {PDF:References}
 
+\BulletItem
 \textbf{Professor Jonathan Public}
-\par
+\newline
 Professor of Geology and Mechanical Engineering
-\begin{detail}
+\newline
 First American University
-\par
-Department of Geophysical Engineering
-\par
+\begin{detail}
+\SubItem
 1000 First Avenue, Springfield, Massachusetts 22222, USA
-\par
+\newline
 \href{mailto:jonathanpublic@example.com}
 {jonathanpublic@example.com}
-\,\BulletSymbol\,
+\,\SubBulletSymbol\,
 +1\,(555)\,222-2222
 \end{detail}
 
-\BigEntryGap
+\Gap
+\BulletItem
 \textbf{Dr Alice Bob Carol}
-\par
+\newline
 Director, Research \& Development
-\begin{detail}
+\newline
 Alpha Engineering Firm
-\par
+\begin{detail}
+\SubItem
 20 North Street, Oakland, Ohio 33333, USA
-\par
+\newline
 \href{mailto:alicebobcarol@example.com}
 {alicebobcarol@example.com}
-\,\BulletSymbol\,
+\,\SubBulletSymbol\,
 +1\,(555)\,333-3333
+\end{detail}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION WITH USAGE EXAMPLES %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section
+{Section\newline
+With\newline
+Usage\newline
+Examples}
+{Section With Usage Examples (For PDF Bookmark)}
+{PDF:SectionWithUsageExamples:ForPDFLink}
+
+\subsection
+{This is a Subsection}
+{This is a Subsection}
+{PDF:ThisIsASubSection}
+
+\GapNoBreak
+\BulletItem
+Use \CodeCommand{section} and \CodeCommand{subsection} to create sections and subsections.
+These will appear in the PDF bookmarks too.
+
+\GapNoBreak
+\BulletItem
+This is the second \CodeCommand{BulletItem}.
+Long items are automatically indented.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sed sed aliquam massa.
+\begin{detail}
+\SubBulletItem
+This is a \CodeCommand{SubBulletItem}.
+Long items are automatically indented.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sed sed aliquam massa.
+Aliquam dignissim mi non enim feugiat elementum.
+Donec sit amet turpis ac velit ultrices volutpat.
+Aliquam vitae elit massa.
+\SubBulletItem
+This is the second \CodeCommand{SubBulletItem}.
+\SubBulletItem
+The \CodeCommand{SubBulletItem}'s are between
+\CodeCommand{begin\{detail\}} and
+\CodeCommand{end\{detail\}} so that they are typeset in a smaller font.
+\end{detail}
+
+\Gap
+\BulletItem
+This is the third \CodeCommand{BulletItem}.
+
+\Gap
+\BulletItem
+A \CodeCommand{Gap} or \CodeCommand{GapNoBreak} is inserted between the \CodeCommand{BulletItem}'s so that there is a small vertical space between them.
+The ``NoBreak'' version prevents page breaking, and should be used to avoid orphaned headings and other formatting issues.
+
+\BigGap
+\subsection
+{This is the Second Subsection}
+{This is the Second Subsection}
+{PDF:ThisIsTheSecondSubSection}
+
+\GapNoBreak
+\BulletItem
+A \CodeCommand{BigGap} or \CodeCommand{BigGapNoBreak} is inserted between subsections so that there is a bigger vertical space between them.
+The ``NoBreak'' version prevents page breaking.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ANOTHER SECTION WITH USAGE EXAMPLES %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section
+{Another\newline
+Section\newline
+With\newline
+Usage\newline
+Examples}
+{Another Section With Usage Examples (For PDF Bookmark)}
+{PDF:AnotherSectionWithUsageExamples:ForPDFLink}
+
+\textbf{This is a Plain Heading},
+followed by an \CodeCommand{hfill} and a date range
+\hfill
+\DatestampYM{2015}{10} --
+\DatestampYM{2015}{12}
+
+\GapNoBreak
+\BulletItem
+This is a \CodeCommand{BulletItem}.
+\begin{detail}
+\SubBulletItem
+This is a \CodeCommand{SubBulletItem}.
+\end{detail}
+
+\GapNoBreak
+\BulletItem
+This is a \CodeCommand{BulletItem}.
+\begin{detail}
+\SubItem
+This is a \CodeCommand{SubItem}, which has no bullet.
+Note the alignment with the \CodeCommand{BulletItem} above.
+\end{detail}
+
+\GapNoBreak
+\Item
+This is an \CodeCommand{Item}, which has no bullet.
+Note the alignment with the \CodeCommand{BulletItem} above.
+\begin{detail}
+\SubItem
+This is a \CodeCommand{SubItem}.
+\end{detail}
+
+\GapNoBreak
+\NumberedItem{[16]}
+This is a \CodeCommand{NumberedItem}.
+Note the alignment with the \CodeCommand{SubBulletItem} above.
+
+\GapNoBreak
+\NumberedItem{{\CharSpace}[6]}
+This is a \CodeCommand{NumberedItem} with a \CodeCommand{CharSpace} in its argument for padding shorter numbers.
+Note the alignment with the \CodeCommand{NumberedItem} above.
+
+\BigGap
+\textbf{Usage Notes}
+
+\GapNoBreak
+\BulletItem
+New Lines and Paragraphs
+\begin{detail}
+\SubBulletItem
+To create a new line within the same paragraph (i.e., with the same indentation), use \CodeCommand{newline} instead of \CodeCommand{\textbackslash}.
+The latter will not work because it breaks the long table.
+\SubBulletItem
+To create a new paragraph, use \CodeCommand{par} or simply leave an empty line.
+Paragraph indentations (from
+\CodeCommand{Item},
+\CodeCommand{SubItem},
+\CodeCommand{BulletItem},
+\CodeCommand{SubBulletItem},
+etc.) do not carry across different paragraphs.
+\end{detail}
+
+\Gap
+\BulletItem
+Vertical Spacing Between Items
+\begin{detail}
+\SubBulletItem
+Use \CodeCommand{Gap} or \CodeCommand{GapNoBreak} to insert a small vertical space between items within the same section.
+\SubBulletItem
+Use \CodeCommand{BigGap} or \CodeCommand{BigGapNoBreak} to insert a bigger vertical space between items within the same section.
+\SubBulletItem
+The ``NoBreak'' versions prevent page breaking.
+\end{detail}
+
+\Gap
+\BulletItem
+Dates
+\begin{detail}
+\SubBulletItem
+Use
+\CodeCommand{DatestampYMD\{YYYY\}\{MM\}\{DD\}},
+\CodeCommand{DatestampYM\{YYYY\}\{MM\}}, and
+\CodeCommand{DatestampY\{YYYY\}}
+to specify dates.
+\SubBulletItem
+Change the definition of \CodeCommand{DatestampFormatSelection} to adjust how dates are displayed throughout the document (e.g., ``\mbox{2010-12-31}'', ``\mbox{Dec 2010}'', ``\mbox{December 2010}'', ``\mbox{2010}'').
 \end{detail}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -471,58 +680,31 @@ Alpha Engineering Firm
 {Multilingual Unicode Examples}
 {PDF:MultilingualUnicodeExamples}
 
-Source:
+\BulletItem
+Assortment of unicode characters from
 \href{http://www.ltg.ed.ac.uk/~richard/unicode-sample.html}
 {http://www.ltg.ed.ac.uk/{\TildeSymbol}richard/unicode-sample.html}
 
-\EntryGapNoBreak
+\begin{detail}
+\SubItem
 \textbf{Latin Extended-A}
-\begin{detail}
-Ā ā Ă ă Ą ą Ć ć Ĉ ĉ Ċ ċ Č č Ď ď Đ đ Ē ē Ĕ ĕ Ė ė Ę ę Ě ě Ĝ ĝ Ğ ğ Ġ ġ Ģ ģ Ĥ ĥ Ħ ħ Ĩ ĩ Ī ī Ĭ ĭ Į į İ ı Ĳ ĳ Ĵ ĵ Ķ ķ ĸ Ĺ ĺ Ļ ļ Ľ ľ Ŀ ŀ Ł ł Ń ń Ņ ņ Ň ň ŉ Ŋ ŋ Ō ō Ŏ ŏ Ő ő Œ œ Ŕ ŕ Ŗ ŗ Ř ř Ś ś Ŝ ŝ Ş ş Š š Ţ ţ Ť ť Ŧ ŧ Ũ ũ Ū ū Ŭ ŭ Ů ů Ű ű Ų ų Ŵ ŵ Ŷ ŷ Ÿ Ź ź Ż ż Ž ž ſ
-\end{detail}
-
-\EntryGap
+Ā ā Ă ă Ą ą Ć ć Ĉ ĉ Ċ ċ Č č Ď ď Đ đ Ē ē Ĕ ĕ Ė ė Ę ę Ě ě Ĝ ĝ Ğ ğ Ġ ġ Ģ ģ Ĥ ĥ Ħ ħ Ĩ ĩ Ī ī Ĭ ĭ Į į İ ı Ĳ ĳ Ĵ ĵ
 \textbf{Latin Extended-B}
-\begin{detail}
-ƀ Ɓ Ƃ ƃ Ƅ ƅ Ɔ Ƈ ƈ Ɖ Ɗ Ƌ ƌ ƍ Ǝ Ə Ɛ Ƒ ƒ Ɠ Ɣ ƕ Ɩ Ɨ Ƙ ƙ ƚ ƛ Ɯ Ɲ ƞ Ɵ Ơ ơ Ƣ ƣ Ƥ ƥ Ʀ Ƨ ƨ Ʃ ƪ ƫ Ƭ ƭ Ʈ Ư ư Ʊ Ʋ Ƴ ƴ Ƶ ƶ Ʒ Ƹ ƹ ƺ ƻ Ƽ ƽ ƾ ƿ ǀ ǁ ǂ ǃ Ǆ ǅ ǆ Ǉ ǈ ǉ Ǌ ǋ ǌ Ǎ ǎ Ǐ ǐ Ǒ ǒ Ǔ ǔ Ǖ ǖ Ǘ ǘ Ǚ ǚ Ǜ ǜ ǝ Ǟ ǟ Ǡ ǡ Ǣ ǣ Ǥ ǥ Ǧ ǧ Ǩ ǩ Ǫ ǫ Ǭ ǭ Ǯ ǯ ǰ Ǳ ǲ ǳ Ǵ ǵ Ǻ ǻ Ǽ ǽ Ǿ ǿ Ȁ ȁ Ȃ ȃ
-\end{detail}
-
-\EntryGap
+ƀ Ɓ Ƃ ƃ Ƅ ƅ Ɔ Ƈ ƈ Ɖ Ɗ Ƌ ƌ ƍ Ǝ Ə Ɛ Ƒ ƒ Ɠ Ɣ ƕ Ɩ Ɨ Ƙ ƙ ƚ ƛ Ɯ Ɲ ƞ Ɵ Ơ ơ Ƣ ƣ Ƥ ƥ Ʀ Ƨ ƨ Ʃ ƪ ƫ Ƭ ƭ Ʈ Ư ư Ʊ Ʋ Ƴ ƴ Ƶ
 \textbf{Latin Extended Additional}
-\begin{detail}
-Ḁ ḁ Ḃ ḃ Ḅ ḅ Ḇ ḇ Ḉ ḉ Ḋ ḋ Ḍ ḍ Ḏ ḏ Ḑ ḑ Ḓ ḓ Ḕ ḕ Ḗ ḗ Ḙ ḙ Ḛ ḛ Ḝ ḝ Ḟ ḟ Ḡ ḡ Ḣ ḣ Ḥ ḥ Ḧ ḧ Ḩ ḩ Ḫ ḫ Ḭ ḭ Ḯ ḯ Ḱ ḱ Ḳ ḳ Ḵ ḵ Ḷ ḷ Ḹ ḹ Ḻ ḻ Ḽ ḽ Ḿ ḿ Ṁ ṁ Ṃ ṃ Ṅ ṅ Ṇ ṇ Ṉ ṉ Ṋ ṋ Ṍ ṍ Ṏ ṏ Ṑ ṑ Ṓ ṓ Ṕ ṕ Ṗ ṗ Ṙ ṙ Ṛ ṛ Ṝ ṝ Ṟ ṟ Ṡ ṡ Ṣ ṣ Ṥ ṥ Ṧ ṧ Ṩ ṩ Ṫ ṫ Ṭ ṭ Ṯ ṯ Ṱ ṱ Ṳ ṳ Ṵ ṵ Ṷ ṷ Ṹ ṹ Ṻ ṻ Ṽ ṽ Ṿ ṿ
-\end{detail}
-
-\EntryGap
+Ḁ ḁ Ḃ ḃ Ḅ ḅ Ḇ ḇ Ḉ ḉ Ḋ ḋ Ḍ ḍ Ḏ ḏ Ḑ ḑ Ḓ ḓ Ḕ ḕ Ḗ ḗ Ḙ ḙ Ḛ ḛ Ḝ ḝ Ḟ ḟ Ḡ ḡ Ḣ ḣ Ḥ ḥ Ḧ ḧ Ḩ ḩ Ḫ ḫ Ḭ ḭ Ḯ ḯ Ḱ ḱ Ḳ ḳ Ḵ ḵ
 \textbf{Greek}
-\begin{detail}
-ʹ ͵ ͺ ; ΄ ΅ Ά · Έ Ή Ί Ό Ύ Ώ ΐ Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω Ϊ Ϋ ά έ ή ί ΰ α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ ς σ τ υ φ χ ψ ω ϊ ϋ ό ύ ώ ϐ ϑ ϒ ϓ ϔ ϕ ϖ Ϛ Ϝ Ϟ Ϡ Ϣ ϣ Ϥ ϥ Ϧ ϧ Ϩ ϩ Ϫ ϫ Ϭ ϭ Ϯ ϯ ϰ ϱ ϲ ϳ
-\end{detail}
-
-\EntryGap
+ʹ ͵ ͺ ; ΄ ΅ Ά · Έ Ή Ί Ό Ύ Ώ ΐ Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω Ϊ Ϋ ά έ ή ί ΰ α β γ δ ε ζ η θ
 \textbf{Cyrillic}
-\begin{detail}
-Ё Ђ Ѓ Є Ѕ І Ї Ј Љ Њ Ћ Ќ Ў Џ А Б В Г Д Е Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я а б в г д е ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я ё ђ ѓ є ѕ і ї ј љ њ ћ ќ ў џ Ѡ ѡ Ѣ ѣ Ѥ ѥ Ѧ ѧ Ѩ ѩ Ѫ ѫ Ѭ ѭ Ѯ ѯ Ѱ ѱ Ѳ ѳ Ѵ ѵ Ѷ ѷ Ѹ ѹ Ѻ ѻ Ѽ ѽ Ѿ ѿ Ҁ ҁ ҂ ҃
-\end{detail}
-
-\EntryGap
+Ё Ђ Ѓ Є Ѕ І Ї Ј Љ Њ Ћ Ќ Ў Џ А Б В Г Д Е Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я а б в г д е ж з
 \textbf{Hebrew}
-\begin{detail}
-֑ ֒ ֓ ֔ ֕ ֖ ֗ ֘ ֙ ֚ ֛ ֜ ֝ ֞ ֟ ֠ ֡ ֣ ֤ ֥ ֦ ֧ ֨ ֩ ֪ ֫ ֬ ֭ ֮ ֯ ְ ֱ ֲ ֳ ִ ֵ ֶ ַ ָ ֹ ֻ ּ ֽ ־ ֿ ׀ ׁ ׂ ׃ ׄ א ב ג ד ה ו ז ח ט י ך כ ל ם מ ן נ ס ע ף פ ץ צ ק ר ש ת װ ױ ײ ׳ ״
-\end{detail}
-
-\EntryGap
+א ב ג ד ה ו ז ח ט י ך כ ל ם מ ן נ ס ע ף פ ץ צ ק ר ש ת װ ױ ײ ֝ ֞ ֟ ֠ ֡ ֣ ֤ ֥ ֦ ֧ ֨ ֩ ֪ ֫ ֬ ֭ ֮ ֯ ְ ֱ ֒ ֓ ֔
 \textbf{Armenian}
-\begin{detail}
-\UseSecondaryFont
-Ա Բ Գ Դ Ե Զ Է Ը Թ Ժ Ի Լ Խ Ծ Կ Հ Ձ Ղ Ճ Մ Յ Ն Շ Ո Չ Պ Ջ Ռ Ս Վ Տ Ր Ց Ւ Փ Ք Օ Ֆ ՙ ՚ ՛ ՜ ՝ ՞ ՟ ա բ գ դ ե զ է ը թ ժ ի լ խ ծ կ հ ձ ղ ճ մ յ ն շ ո չ պ ջ ռ ս վ տ ր ց ւ փ ք օ ֆ և ։
-\end{detail}
-
-\EntryGap
+{\UseSecondaryFont
+Ա Բ Գ Դ Ե Զ Է Ը Թ Ժ Ի Լ Խ Ծ Կ Հ Ձ Ղ Ճ Մ Յ Ն Շ Ո Չ Պ Ջ Ռ Ս Վ Տ Ր Ց Ւ Փ Ք Օ Ֆ ՙ ՚ ՛ ՜ ՝ ՞ ՟ ա բ գ դ ե զ}
 \textbf{Thai}
-\begin{detail}
-\UseSecondaryFont
-ก ข ฃ ค ฅ ฆ ง จ ฉ ช ซ ฌ ญ ฎ ฏ ฐ ฑ ฒ ณ ด ต ถ ท ธ น บ ป ผ ฝ พ ฟ ภ ม ย ร ฤ ล ฦ ว ศ ษ ส ห ฬ อ ฮ ฯ ะ ั า ำ ิ ี ึ ื ุ ู ฺ ฿ เ แ โ ใ ไ ๅ ๆ ็ ่ ้ ๊ ๋ ์ ํ ๎ ๏ ๐ ๑ ๒ ๓ ๔ ๕ ๖ ๗ ๘ ๙ ๚ ๛
+{\UseSecondaryFont
+ก ข ฃ ค ฅ ฆ ง จ ฉ ช ซ ฌ ญ ฎ ฏ ฐ ฑ ฒ ณ ด ต ถ ท ธ น บ ป ผ ฝ พ ฟ ภ ม ย ร ฤ ล ฦ ว ศ ษ ส ห ฬ อ ฮ ฯ ะ ั า ำ ิ}
 \end{detail}
 
 \end{body}
@@ -532,7 +714,7 @@ Source:
 %%%%%%%%%%%
 
 \begin{flushright}
-\scriptsize%
+\UseNoteFont%
 [\textit{\CVNote}]%
 \hspace{2.0mm}\null
 \end{flushright}
