@@ -1,5 +1,7 @@
 % !TEX TS-program = xelatex
-% !TEX encoding = UTF-8
+% !TEX encoding = UTF-8 Unicode
+% -*- coding: UTF-8; -*-
+% vim: set fenc=utf-8
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SIMPLE-RESUME-CV
@@ -21,21 +23,14 @@
 %%   (run multiple times to resolve cross-references if needed)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \documentclass[a4paper,10pt,oneside]{article}
-\documentclass[letterpaper,10pt,oneside]{article}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% TYPESETTING OPTIONS.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand{\TypesetInNonStopMode}{1}
-\newcommand{\TypesetInDraftMode}{0}
+\documentclass[letterpaper,MMMyyyy,nonstop]{simpleresumecv}
+% Class options:
+% a4paper, letterpaper, draft, nonstop
+% MMMyyyy, ddMMMyyyy, MMMMyyyy, ddMMMMyyyy, yyyyMMdd, yyyyMM, yyyy
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PREAMBLE.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\input{CV-Preamble.tex}
 
 % CV Info (to be customized).
 \newcommand{\CVAuthor}{John Doe}
@@ -52,8 +47,8 @@ pdfcreator={XeLaTeX},
 pdfproducer={},
 pdfkeywords={},
 pdfpagemode={},
-bookmarks=true,
 unicode=true,
+bookmarks=true,
 bookmarksopen=true,
 pdfstartview=FitH,
 pdfpagelayout=OneColumn,
@@ -119,9 +114,9 @@ Thesis:
 {A Statistical Approach to Quantifying Climate Change}
 \SubBulletItem
 Adviser:
-Professor Jonathan Public
+Prof.~Jonathan~Public
 \SubBulletItem
-Research areas:
+Focus:
 Climate change, metrology, lasers, statistics.
 \end{detail}
 
@@ -190,10 +185,10 @@ Project:
 Investigations on the Use of Lasers to Measure Climate Change
 \SubBulletItem
 Supervisors:
-Professor Jane Citizen and
-Dr Ann Yone
+Prof.~Jane~Citizen and
+Dr~Ann~Yone
 \SubBulletItem
-Research areas:
+Focus:
 Climate change, lasers, statistical analysis, data analytics.
 \end{detail}
 
@@ -268,14 +263,15 @@ in \textit{Proceedings of the International Climate Change Conference},
 London, UK,
 \DatestampYM{2005}{11}.}
 
-%%%%%%%%%%%%%%%%%%%%%
-%% ACADEMIC AWARDS %%
-%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% AWARDS & SCHOLARSHIPS %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section
-{Academic Awards}
-{Academic Awards}
-{PDF:AcademicAwards}
+{Awards \&\newline
+Scholarships}
+{Awards \& Scholarships}
+{PDF:AwardsAndScholarships}
 
 \BulletItem
 Dean's List,
@@ -302,6 +298,18 @@ For outstanding scientific contributions in the fields of lasers and climate cha
 
 \Gap
 \BulletItem
+Chess Tournament,
+First Prize,
+Science College
+\hfill
+\DatestampYMD{2003}{03}{10}
+\begin{detail}
+\SubItem
+Awarded at the Tenth Annual Chess Tournament held during Open House.
+\end{detail}
+
+\Gap
+\BulletItem
 International Science Scholarship,
 \hfill
 \DatestampYMD{2001}{12}{10}
@@ -311,26 +319,6 @@ Global Science, Technology, Engineering, and Mathematics Foundation
 \SubItem
 Full-tuition scholarship with stipend for undergraduate studies.
 One of 42 awardees in the world.
-\end{detail}
-
-%%%%%%%%%%%%%%%%%%
-%% OTHER AWARDS %%
-%%%%%%%%%%%%%%%%%%
-
-\section
-{Other Awards}
-{Other Awards}
-{PDF:OtherAwards}
-
-\BulletItem
-Chess Tournament,
-First Prize,
-First American University
-\hfill
-\DatestampYMD{2007}{03}{10}
-\begin{detail}
-\SubItem
-Awarded at the Tenth Annual Chess Tournament held during Alumni Weekend.
 \end{detail}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -478,32 +466,28 @@ swimming.
 Professor of Geology and Mechanical Engineering
 \newline
 First American University
-\begin{detail}
-\SubItem
+\newline
 1000 First Avenue, Springfield, Massachusetts 22222, USA
 \newline
 \href{mailto:jonathanpublic@example.com}
 {jonathanpublic@example.com}
 \,\SubBulletSymbol\,
 +1\,(555)\,222-2222
-\end{detail}
 
-\Gap
+\BigGap
 \BulletItem
 \textbf{Dr Alice Bob Carol}
 \newline
 Director, Research \& Development
 \newline
 Alpha Engineering Firm
-\begin{detail}
-\SubItem
+\newline
 20 North Street, Oakland, Ohio 33333, USA
 \newline
 \href{mailto:alicebobcarol@example.com}
 {alicebobcarol@example.com}
 \,\SubBulletSymbol\,
 +1\,(555)\,333-3333
-\end{detail}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION WITH USAGE EXAMPLES %%
@@ -668,7 +652,14 @@ Use
 \CodeCommand{DatestampY\{YYYY\}}
 to specify dates.
 \SubBulletItem
-Change the definition of \CodeCommand{DatestampFormatSelection} to adjust how dates are displayed throughout the document (e.g., ``\mbox{2010-12-31}'', ``\mbox{Dec 2010}'', ``\mbox{December 2010}'', ``\mbox{2010}'').
+Change the date format option passed to the document class to adjust how dates are displayed throughout the document:
+MMMyyyy (``Dec~2010''),
+ddMMMyyyy (``31~Dec~2010''),
+MMMMyyyy (``December~2010''),
+ddMMMMyyyy (``31~December~2010''),
+yyyyMMdd (``2010-12-31''),
+yyyyMM (``2010-12''),
+yyyy (``2010'').
 \end{detail}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -713,11 +704,9 @@ Assortment of unicode characters from
 % CV NOTE %
 %%%%%%%%%%%
 
-\begin{flushright}
 \UseNoteFont%
+\null\hfill%
 [\textit{\CVNote}]%
 \hspace{2.0mm}\null
-\end{flushright}
 
-\label{LastPage}~
 \end{document}

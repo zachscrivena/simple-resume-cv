@@ -1,3 +1,8 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% -*- coding: UTF-8; -*-
+% vim: set fenc=utf-8
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SIMPLE-RESUME-CV
 %% <https://github.com/zachscrivena/simple-resume-cv>
@@ -5,13 +10,68 @@
 %% public domain; see <http://unlicense.org> for details.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Run in non-stop mode.
-\ifnum\TypesetInNonStopMode=1
-\nonstopmode
-\fi
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{simpleresumecv}[2016/01/09 Simple Resume CV https://github.com/zachscrivena/simple-resume-cv]
+
+\DeclareOption{a4paper}{\PassOptionsToClass{\CurrentOption}{article}}
+\DeclareOption{letterpaper}{\PassOptionsToClass{\CurrentOption}{article}}
+
+% Draft mode.
+\newcommand{\TypesetInDraftMode}{0}
+\DeclareOption{draft}{\renewcommand{\TypesetInDraftMode}{1}}
+
+% Run in non-stop mode
+\DeclareOption{nonstop}{\nonstopmode}
+
+% Datestamp format (default): {yyyy}{MM}{dd} ---> MMM yyyy (e.g., Dec 2010).
+\newcommand{\DatestampYMD}[3]{\mbox{\ShortMonth{#2} #1}}
+\newcommand{\DatestampYM}[2]{\mbox{\ShortMonth{#2} #1}}
+\newcommand{\DatestampY}[1]{#1}
+\DeclareOption{MMMyyyy}{} % default
+
+% Datestamp format: {yyyy}{MM}{dd} ---> dd MMM yyyy (e.g., 12 Dec 2010).
+\DeclareOption{ddMMMyyyy}{%
+\renewcommand{\DatestampYMD}[3]{\mbox{#3 \ShortMonth{#2} #1}}
+\renewcommand{\DatestampYM}[2]{\mbox{\ShortMonth{#2} #1}}
+\renewcommand{\DatestampY}[1]{#1}}
+
+% Datestamp format: {yyyy}{MM}{dd} ---> MMMM yyyy (e.g., December 2010).
+\DeclareOption{MMMMyyyy}{%
+\renewcommand{\DatestampYMD}[3]{\mbox{\LongMonth{#2} #1}}
+\renewcommand{\DatestampYM}[2]{\mbox{\LongMonth{#2} #1}}
+\renewcommand{\DatestampY}[1]{#1}}
+
+% Datestamp format: {yyyy}{MM}{dd} ---> dd MMMM yyyy (e.g., 12 December 2010).
+\DeclareOption{ddMMMMyyyy}{%
+\renewcommand{\DatestampYMD}[3]{\mbox{#3 \LongMonth{#2} #1}}
+\renewcommand{\DatestampYM}[2]{\mbox{\LongMonth{#2} #1}}
+\renewcommand{\DatestampY}[1]{#1}}
+
+% Datestamp format: {yyyy}{MM}{dd} ---> yyyy-MM-dd (e.g., 2010-12-31).
+\DeclareOption{yyyyMMdd}{%
+\renewcommand{\DatestampYMD}[3]{\mbox{#1-#2-#3}}
+\renewcommand{\DatestampYM}[2]{\mbox{#1-#2}}
+\renewcommand{\DatestampY}[1]{#1}}
+
+% Datestamp format: {yyyy}{MM}{dd} ---> yyyy-MM (e.g., 2010-12).
+\DeclareOption{yyyyMM}{%
+\renewcommand{\DatestampYMD}[3]{\mbox{#1-#2}}
+\renewcommand{\DatestampYM}[2]{\mbox{#1-#2}}
+\renewcommand{\DatestampY}[1]{#1}}
+
+% Datestamp format: {yyyy}{MM}{dd} ---> yyyy (e.g., 2010).
+\DeclareOption{yyyy}{%
+\renewcommand{\DatestampYMD}[3]{#1}
+\renewcommand{\DatestampYM}[2]{#1}
+\renewcommand{\DatestampY}[1]{#1}}
+
+\ProcessOptions\relax
+
+% Use article class as the base class.
+\LoadClass[10pt,oneside]{article}
 
 % Geometry package for page margins.
-\usepackage[
+\RequirePackage[
 left=0.70in,
 right=0.70in,
 top=0.60in,
@@ -20,21 +80,21 @@ nohead,
 includefoot]{geometry}
 
 % PDF settings and properties.
-\usepackage{hyperref}
+\RequirePackage{hyperref}
 
 % Long table for page layout.
-\usepackage{longtable}
+\RequirePackage{longtable}
 
 % Hyphenation: Disabled.
-\usepackage[none]{hyphenat}
+\RequirePackage[none]{hyphenat}
 
 % Colors.
-\usepackage[usenames]{color}
+\RequirePackage[usenames]{color}
 % \definecolor{MyDarkBlue}{RGB}{0,90,160}
 % {\color{MyDarkBlue}This text is dark blue}
 
 % Current date and time.
-\usepackage[yyyymmdd,24hr]{datetime}
+\RequirePackage[yyyymmdd,24hr]{datetime}
 \renewcommand{\dateseparator}{-}
 \settimeformat{xxivtime}
 % {\today}~{\currenttime}
@@ -74,42 +134,11 @@ includefoot]{geometry}
 \or Dec%
 \fi}
 
-% Select datestamp format.
-\def\DatestampFormatSelection{2}
-
-% Datestamp format: {yyyy}{MM}{dd} ---> yyyy-MM-dd (e.g., 2010-12-31).
-\ifnum\DatestampFormatSelection=1
-\newcommand{\DatestampYMD}[3]{\mbox{#1-#2-#3}}
-\newcommand{\DatestampYM}[2]{\mbox{#1-#2}}
-\newcommand{\DatestampY}[1]{#1}
-\fi
-
-% Datestamp format: {yyyy}{MM}{dd} ---> MMM yyyy (e.g., Dec 2010).
-\ifnum\DatestampFormatSelection=2
-\newcommand{\DatestampYMD}[3]{\mbox{\ShortMonth{#2} #1}}
-\newcommand{\DatestampYM}[2]{\mbox{\ShortMonth{#2} #1}}
-\newcommand{\DatestampY}[1]{#1}
-\fi
-
-% Datestamp format: {yyyy}{MM}{dd} ---> MMMM yyyy (e.g., December 2010).
-\ifnum\DatestampFormatSelection=3
-\newcommand{\DatestampYMD}[3]{\mbox{\LongMonth{#2} #1}}
-\newcommand{\DatestampYM}[2]{\mbox{\LongMonth{#2} #1}}
-\newcommand{\DatestampY}[1]{#1}
-\fi
-
-% Datestamp format: {yyyy}{MM}{dd} ---> yyyy (e.g., 2010).
-\ifnum\DatestampFormatSelection=4
-\newcommand{\DatestampYMD}[3]{#1}
-\newcommand{\DatestampYM}[2]{#1}
-\newcommand{\DatestampY}[1]{#1}
-\fi
-
 % XeLaTeX packages.
-\usepackage{fontspec}
+\RequirePackage{fontspec}
 \defaultfontfeatures{Ligatures=TeX}
-\usepackage{xunicode}
-\usepackage{xltxtra}
+\RequirePackage{xunicode}
+\RequirePackage{xltxtra}
 
 % Font: Use "Tinos" as the main typeface (\textnormal{}, \normalfont).
 % The "Tinos" fonts are released under the Apache License Version 2.0,
@@ -159,26 +188,26 @@ BoldItalicFont=FreeSerifBoldItalic]
 \newcommand{\TildeSymbol}{{\normalfont\char"007E}}
 
 % Headers and footers: Blank header, page number in footer.
+\AtEndDocument{\null\label{LastPage}}
+\newcommand{\PageKOfN}{{\UseHeaderFooterFont{Page}~\thepage~of~\pageref{LastPage}}}
+\newcommand{\DraftStamp}{{\UseHeaderFooterFont\color{red}DRAFT~\Timestamp}}
+\newcommand{\ExtraMargin}{\hspace{2.0mm}}
+
 \ifnum\TypesetInDraftMode=0
 \newcommand{\HeaderText}{}
-\newcommand{\FooterText}{\UseHeaderFooterFont\hfill%
-{Page}~{\thepage}~of~\pageref{LastPage}%
-\hfill}
+\newcommand{\FooterText}{\hfill\PageKOfN\hfill}
 \else
 \newcommand{\HeaderText}{}
-\newcommand{\FooterText}{\UseHeaderFooterFont%
-\hphantom{DRAFT~\Timestamp}\hfill%
-{Page}~{\thepage}~of~\pageref{LastPage}%
-\hfill{\color{red}DRAFT~\Timestamp}}
+\newcommand{\FooterText}{\null\ExtraMargin\hphantom{\DraftStamp}\hfill%
+\PageKOfN\hfill%
+\DraftStamp\ExtraMargin\null}
 \fi
 
-\makeatletter
 \def\ps@plain{%
 \def\@oddhead{\HeaderText}%
 \def\@evenhead{\HeaderText}%
 \def\@oddfoot{\FooterText}%
 \def\@evenfoot{\FooterText}}
-\makeatother
 
 \pagestyle{plain}
 
@@ -285,3 +314,6 @@ BoldItalicFont=FreeSerifBoldItalic]
 
 % Macro: hide.
 \newcommand{\hide}[1]{}
+
+% End of class file.
+\endinput
