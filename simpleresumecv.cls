@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{simpleresumecv}[2016/01/09 Simple Resume CV https://github.com/zachscrivena/simple-resume-cv]
+\ProvidesClass{simpleresumecv}[2016/01/23 Simple Resume CV https://github.com/zachscrivena/simple-resume-cv]
 
 \DeclareOption{a4paper}{\PassOptionsToClass{\CurrentOption}{article}}
 \DeclareOption{letterpaper}{\PassOptionsToClass{\CurrentOption}{article}}
@@ -29,7 +29,7 @@
 \newcommand{\DatestampY}[1]{#1}
 \DeclareOption{MMMyyyy}{} % default
 
-% Datestamp format: {yyyy}{MM}{dd} ---> dd MMM yyyy (e.g., 12 Dec 2010).
+% Datestamp format: {yyyy}{MM}{dd} ---> dd MMM yyyy (e.g., 31 Dec 2010).
 \DeclareOption{ddMMMyyyy}{%
 \renewcommand{\DatestampYMD}[3]{\mbox{#3 \ShortMonth{#2} #1}}
 \renewcommand{\DatestampYM}[2]{\mbox{\ShortMonth{#2} #1}}
@@ -41,7 +41,7 @@
 \renewcommand{\DatestampYM}[2]{\mbox{\LongMonth{#2} #1}}
 \renewcommand{\DatestampY}[1]{#1}}
 
-% Datestamp format: {yyyy}{MM}{dd} ---> dd MMMM yyyy (e.g., 12 December 2010).
+% Datestamp format: {yyyy}{MM}{dd} ---> dd MMMM yyyy (e.g., 31 December 2010).
 \DeclareOption{ddMMMMyyyy}{%
 \renewcommand{\DatestampYMD}[3]{\mbox{#3 \LongMonth{#2} #1}}
 \renewcommand{\DatestampYM}[2]{\mbox{\LongMonth{#2} #1}}
@@ -312,8 +312,8 @@ BoldItalicFont=FreeSerifBoldItalic]
 \newlength{\CharWidth}
 \newcommand{\CharSpace}{\settowidth{\CharWidth}{8}\hspace{\CharWidth}}
 
-% Macro: hide.
-\newcommand{\hide}[1]{}
+% Macro: Hide.
+\newcommand{\Hide}[1]{}
 
 % End of class file.
 \endinput
