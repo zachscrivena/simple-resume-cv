@@ -10,22 +10,11 @@
 %% public domain; see <http://unlicense.org> for details.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% INSTRUCTIONS FOR COMPILING THIS DOCUMENT ("CV.tex")
-%% TeX ---(XeLaTeX)---> PDF:
-%%
-%% Method 1: Use latexmk for fully automated document generation:
-%%   latexmk -xelatex "CV.tex"
-%%   (add the -pvc switch to automatically recompile on changes)
-%%
-%% Method 2: Use XeLaTeX directly:
-%%   xelatex "CV.tex"
-%%   (run multiple times to resolve cross-references if needed)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% See "README.md" for instructions on compiling this document.
 
-\documentclass[letterpaper,MMMyyyy,nonstop]{simpleresumecv}
+\documentclass[letterpaper,MMMyyyy,nonstopmode]{simpleresumecv}
 % Class options:
-% a4paper, letterpaper, draft, nonstop
+% a4paper, letterpaper, nonstopmode, draftmode
 % MMMyyyy, ddMMMyyyy, MMMMyyyy, ddMMMMyyyy, yyyyMMdd, yyyyMM, yyyy
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -36,7 +25,7 @@
 \newcommand{\CVAuthor}{John Doe}
 \newcommand{\CVTitle}{John Doe's CV for Acme Corporation}
 \newcommand{\CVNote}{CV compiled on {\today} for Acme Corporation}
-\newcommand{\CVWebpage}{http://www.example.com/johndoe}
+\newcommand{\CVWebpage}{http://www.example.com/~johndoe}
 
 % PDF settings and properties.
 \hypersetup{
@@ -46,7 +35,6 @@ pdfsubject={\CVWebpage},
 pdfcreator={XeLaTeX},
 pdfproducer={},
 pdfkeywords={},
-pdfpagemode={},
 unicode=true,
 bookmarks=true,
 bookmarksopen=true,
@@ -57,6 +45,7 @@ hidelinks,
 breaklinks}
 
 % Shorthand.
+\newcommand{\Code}[1]{\mbox{\textbf{#1}}}
 \newcommand{\CodeCommand}[1]{\mbox{\textbf{\textbackslash{#1}}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,9 +58,9 @@ breaklinks}
 % TITLE BLOCK %
 %%%%%%%%%%%%%%%
 
-\title{\CVAuthor}
+\Title{\CVAuthor}
 
-\begin{subtitle}
+\begin{SubTitle}
 \href{https://www.google.com/maps/place/17+Prime+Avenue,+Springfield,+Pennsylvania+10111,+USA}
 {17 Prime Avenue, Apt 37, Springfield, Pennsylvania 10111, USA}
 \par
@@ -82,15 +71,15 @@ breaklinks}
 \,\SubBulletSymbol\,
 \href{\CVWebpage}
 {\url{\CVWebpage}}
-\end{subtitle}
+\end{SubTitle}
 
-\begin{body}
+\begin{Body}
 
 %%%%%%%%%%%%%%%
 %% EDUCATION %%
 %%%%%%%%%%%%%%%
 
-\section
+\Section
 {Education}
 {Education}
 {PDF:Education}
@@ -99,15 +88,15 @@ breaklinks}
 {\textbf{First American University}},
 Springfield, Massachusetts, USA
 
-\GapNoBreak
+\Gap
 \BulletItem
-Doctor of Philosophy (Ph.D.) in
+Ph.D. in
 \href{http://www.example.com/my-department}
 {Geophysical Engineering}
 \hfill
 \DatestampYMD{2009}{12}{15} --
 \DatestampYMD{2014}{07}{15}
-\begin{detail}
+\begin{Detail}
 \SubBulletItem
 Thesis:
 \href{http://www.example.com/my-phd-thesis}
@@ -118,53 +107,53 @@ Prof.~Jonathan~Public
 \SubBulletItem
 Focus:
 Climate change, metrology, lasers, statistics.
-\end{detail}
+\end{Detail}
 
-\GapNoBreak
+\Gap
 \BulletItem
-Master of Business Administration (M.B.A.)
+M.B.A.
 \hfill
 \DatestampYMD{2008}{11}{15} --
 \DatestampYMD{2009}{06}{15}
 
-\GapNoBreak
+\Gap
 \BulletItem
-Master of Science (M.S.) in
+M.S. in
 \href{http://www.example.com/my-department}
 {Geophysical Engineering}
 \hfill
 \DatestampYMD{2006}{08}{15} --
 \DatestampYMD{2008}{08}{15}
-\begin{detail}
+\begin{Detail}
 \SubBulletItem
 Cumulative GPA: 3.7 / 4.0
-\end{detail}
+\end{Detail}
 
 \BigGap
 \href{http://www.example.com/my-college}
 {\textbf{Science College}},
 Springfield, Pennsylvania, USA
 
-\GapNoBreak
+\Gap
 \BulletItem
-Bachelor of Science (B.S.) in
+B.S. in
 \href{http://www.example.com/my-department}
 {Geography}
 \hfill
 \DatestampYMD{2002}{05}{15} --
 \DatestampYMD{2005}{05}{15}
-\begin{detail}
+\begin{Detail}
 \SubBulletItem
 Graduated with College Honors.
 \SubBulletItem
 Cumulative GPA: 3.96 / 4.00
-\end{detail}
+\end{Detail}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %% RESEARCH EXPERIENCE %%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section
+\Section
 {Research Experience}
 {Research Experience}
 {PDF:ResearchExperience}
@@ -173,13 +162,13 @@ Cumulative GPA: 3.96 / 4.00
 {\textbf{Institute for Advanced Research}},
 Science College
 
-\GapNoBreak
+\Gap
 \BulletItem
 Undergraduate Research Student, Science Department
 \hfill
 \DatestampYMD{2004}{05}{15} --
 \DatestampYMD{2005}{05}{15}
-\begin{detail}
+\begin{Detail}
 \SubBulletItem
 Project:
 Investigations on the Use of Lasers to Measure Climate Change
@@ -190,24 +179,28 @@ Dr~Ann~Yone
 \SubBulletItem
 Focus:
 Climate change, lasers, statistical analysis, data analytics.
-\end{detail}
+\end{Detail}
 
 %%%%%%%%%%%%%%%%%%
 %% PUBLICATIONS %%
 %%%%%%%%%%%%%%%%%%
 
-\section
+\Section
 {Publications}
 {Publications}
 {PDF:Publications}
 
-\subsection
+\SubSection
 {Journals}
 {Journals}
 {PDF:Journals}
 
-\GapNoBreak
-\NumberedItem{[11]}
+% Declare a new group to limit the scope of \MaxNumberedItem to this subsection.
+\begingroup
+\renewcommand{\MaxNumberedItem}{[88]}
+
+\Gap
+\NumberedItem{[10]}
 \href{http://www.example.com/my-paper-doi-5}
 {\underline{J.~Doe}, J.~Citizen, and A.~Yone,
 ``On lasers and climate change,''
@@ -217,9 +210,8 @@ no.~2,
 pp.~4123--4133,
 \DatestampYM{2008}{02}.}
 
-% Note the use of {\CharSpace} for aligning shorter numbers.
 \Gap
-\NumberedItem{{\CharSpace}[1]}
+\NumberedItem{[1]}
 \href{http://www.example.com/my-paper-doi-4}
 {\underline{J.~Doe} and J.~Citizen,
 ``Measuring the extent of climate change,''
@@ -229,14 +221,20 @@ no.~4,
 pp.~330--352,
 \DatestampYM{2006}{12}.}
 
+\endgroup
+
 \BigGap
-\subsection
+\SubSection
 {Conferences}
 {Conferences}
 {PDF:Conferences}
 
-\GapNoBreak
-\NumberedItem{[11]}
+% Declare a new group to limit the scope of \MaxNumberedItem to this subsection.
+\begingroup
+\renewcommand{\MaxNumberedItem}{[8888]}
+
+\Gap
+\NumberedItem{[1000]}
 \href{http://www.example.com/my-paper-doi-3}
 {\underline{J.~Doe}, J.~Citizen, and A.~Yone,
 ``On lasers and climate change,''
@@ -245,7 +243,7 @@ Las Vegas, Nevada, USA,
 \DatestampYM{2007}{01}.}
 
 \Gap
-\NumberedItem{[10]}
+\NumberedItem{[100]}
 \href{http://www.example.com/my-paper-doi-2}
 {A.~Yone and \underline{J.~Doe},
 ``Climate change and general relativity,''
@@ -253,9 +251,8 @@ in \textit{Proceedings of the International Astronomical Conference},
 Sydney, Australia,
 \DatestampYM{2006}{8}.}
 
-% Note the use of {\CharSpace} for aligning shorter numbers.
 \Gap
-\NumberedItem{{\CharSpace}[1]}
+\NumberedItem{[10]}
 \href{http://www.example.com/my-paper-doi-1}
 {\underline{J.~Doe} and J.~Citizen,
 ``Measuring the extent of climate change,''
@@ -263,11 +260,13 @@ in \textit{Proceedings of the International Climate Change Conference},
 London, UK,
 \DatestampYM{2005}{11}.}
 
+\endgroup
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% AWARDS & SCHOLARSHIPS %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section
+\Section
 {Awards \&\newline
 Scholarships}
 {Awards \& Scholarships}
@@ -280,10 +279,10 @@ Science College
 \hfill
 \DatestampY{2002} --
 \DatestampY{2005}
-\begin{detail}
-\SubItem
+\begin{Detail}
+\Item
 For attaining a semester GPA of at least 3.75.
-\end{detail}
+\end{Detail}
 
 \Gap
 \BulletItem
@@ -291,10 +290,10 @@ Undergraduate Researcher Award,
 Science College
 \hfill
 \DatestampYMD{2005}{05}{15}
-\begin{detail}
-\SubItem
+\begin{Detail}
+\Item
 For outstanding scientific contributions in the fields of lasers and climate change.
-\end{detail}
+\end{Detail}
 
 \Gap
 \BulletItem
@@ -303,10 +302,10 @@ First Prize,
 Science College
 \hfill
 \DatestampYMD{2003}{03}{10}
-\begin{detail}
-\SubItem
+\begin{Detail}
+\Item
 Awarded at the Tenth Annual Chess Tournament held during Open House.
-\end{detail}
+\end{Detail}
 
 \Gap
 \BulletItem
@@ -315,17 +314,17 @@ International Science Scholarship,
 \DatestampYMD{2001}{12}{10}
 \newline
 Global Science, Technology, Engineering, and Mathematics Foundation
-\begin{detail}
-\SubItem
+\begin{Detail}
+\Item
 Full-tuition scholarship with stipend for undergraduate studies.
 One of 42 awardees in the world.
-\end{detail}
+\end{Detail}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PROFESSIONAL AFFILIATIONS & ACTIVITIES %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section
+\Section
 {Professional Affiliations\newline
 \& Activities}
 {Professional Affiliations \& Activities}
@@ -335,18 +334,21 @@ One of 42 awardees in the world.
 {\textbf{Society of Professional Earth Scientists}},
 New York, USA
 
-\GapNoBreak
+\Gap
 \BulletItem
 Member
 \hfill
 \DatestampY{2009} --
 Present
 
+% Manual page break.
+\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%
 %% CAMPUS ACTIVITIES %%
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\section
+\Section
 {Campus Activities}
 {Campus Activities}
 {PDF:CampusActivities}
@@ -355,13 +357,13 @@ Present
 {\textbf{First Volunteers Club}},
 First American University
 
-\GapNoBreak
+\Gap
 \BulletItem
 President
 \hfill
 \DatestampYMD{2006}{08}{15} --
 \DatestampYMD{2007}{08}{15}
-\begin{detail}
+\begin{Detail}
 \SubBulletItem
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 \SubBulletItem
@@ -370,13 +372,13 @@ Curabitur vitae laoreet velit, vel ultricies est. Nam nec elit ac ante facilisis
 Integer sit amet turpis dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at orci eu leo vulputate finibus sed et sem.
 \SubBulletItem
 Suspendisse volutpat sapien et mi cursus, gravida ornare mauris sollicitudin.
-\end{detail}
+\end{Detail}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% OTHER WORK EXPERIENCE %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section
+\Section
 {Other Work\newline
 Experience}
 {Other Work Experience}
@@ -386,27 +388,27 @@ Experience}
 {\textbf{Alpha Engineering Firm}},
 Oakland, Ohio, USA
 
-\GapNoBreak
+\Gap
 \BulletItem
 Project Officer,
 Research \& Development Division
 \hfill
 \DatestampYMD{2007}{10}{15} --
 \DatestampYMD{2008}{01}{15}
-\begin{detail}
+\begin{Detail}
 \SubBulletItem
 Nullam venenatis egestas nisl eget elementum.
 \SubBulletItem
 Nulla finibus justo vel turpis efficitur, non lacinia orci maximus. Proin rhoncus, felis vel hendrerit lacinia, enim ipsum ultricies massa, sit amet interdum nisi massa sit amet justo.
 \SubBulletItem
 Etiam vitae eros mollis, consectetur quam quis, molestie massa.
-\end{detail}
+\end{Detail}
 
 %%%%%%%%%%%%%%%
 %% LANGUAGES %%
 %%%%%%%%%%%%%%%
 
-\section
+\Section
 {Languages}
 {Languages}
 {PDF:Languages}
@@ -414,11 +416,11 @@ Etiam vitae eros mollis, consectetur quam quis, molestie massa.
 \BulletItem
 English: Native language.
 
-\GapNoBreak
+\Gap
 \BulletItem
 Spanish: Fluent (speaking, reading, writing).
 
-\GapNoBreak
+\Gap
 \BulletItem
 Latin: Intermediate (reading); basic (speaking, writing).
 
@@ -426,7 +428,7 @@ Latin: Intermediate (reading); basic (speaking, writing).
 %% SKILLS %%
 %%%%%%%%%%%%
 
-\section
+\Section
 {Skills}
 {Skills}
 {PDF:Skills}
@@ -442,7 +444,7 @@ Adobe Illustrator.
 %% INTERESTS %%
 %%%%%%%%%%%%%%%
 
-\section
+\Section
 {Interests}
 {Interests}
 {PDF:Interests}
@@ -455,7 +457,7 @@ swimming.
 %% REFERENCES %%
 %%%%%%%%%%%%%%%%
 
-\section
+\Section
 {References}
 {References}
 {PDF:References}
@@ -489,184 +491,11 @@ Alpha Engineering Firm
 \,\SubBulletSymbol\,
 +1\,(555)\,333-3333
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% SECTION WITH USAGE EXAMPLES %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section
-{Section\newline
-With\newline
-Usage\newline
-Examples}
-{Section With Usage Examples (For PDF Bookmark)}
-{PDF:SectionWithUsageExamples:ForPDFLink}
-
-\subsection
-{This is a Subsection}
-{This is a Subsection}
-{PDF:ThisIsASubSection}
-
-\GapNoBreak
-\BulletItem
-Use \CodeCommand{section} and \CodeCommand{subsection} to create sections and subsections.
-These will appear in the PDF bookmarks too.
-
-\GapNoBreak
-\BulletItem
-This is the second \CodeCommand{BulletItem}.
-Long items are automatically indented.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Sed sed aliquam massa.
-\begin{detail}
-\SubBulletItem
-This is a \CodeCommand{SubBulletItem}.
-Long items are automatically indented.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Sed sed aliquam massa.
-Aliquam dignissim mi non enim feugiat elementum.
-Donec sit amet turpis ac velit ultrices volutpat.
-Aliquam vitae elit massa.
-\SubBulletItem
-This is the second \CodeCommand{SubBulletItem}.
-\SubBulletItem
-The \CodeCommand{SubBulletItem}'s are between
-\CodeCommand{begin\{detail\}} and
-\CodeCommand{end\{detail\}} so that they are typeset in a smaller font.
-\end{detail}
-
-\Gap
-\BulletItem
-This is the third \CodeCommand{BulletItem}.
-
-\Gap
-\BulletItem
-A \CodeCommand{Gap} or \CodeCommand{GapNoBreak} is inserted between the \CodeCommand{BulletItem}'s so that there is a small vertical space between them.
-The ``NoBreak'' version prevents page breaking, and should be used to avoid orphaned headings and other formatting issues.
-
-\BigGap
-\subsection
-{This is the Second Subsection}
-{This is the Second Subsection}
-{PDF:ThisIsTheSecondSubSection}
-
-\GapNoBreak
-\BulletItem
-A \CodeCommand{BigGap} or \CodeCommand{BigGapNoBreak} is inserted between subsections so that there is a bigger vertical space between them.
-The ``NoBreak'' version prevents page breaking.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% ANOTHER SECTION WITH USAGE EXAMPLES %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section
-{Another\newline
-Section\newline
-With\newline
-Usage\newline
-Examples}
-{Another Section With Usage Examples (For PDF Bookmark)}
-{PDF:AnotherSectionWithUsageExamples:ForPDFLink}
-
-\textbf{This is a Plain Heading},
-followed by an \CodeCommand{hfill} and a date range
-\hfill
-\DatestampYM{2015}{10} --
-\DatestampYM{2015}{12}
-
-\GapNoBreak
-\BulletItem
-This is a \CodeCommand{BulletItem}.
-\begin{detail}
-\SubBulletItem
-This is a \CodeCommand{SubBulletItem}.
-\end{detail}
-
-\GapNoBreak
-\BulletItem
-This is a \CodeCommand{BulletItem}.
-\begin{detail}
-\SubItem
-This is a \CodeCommand{SubItem}, which has no bullet.
-Note the alignment with the \CodeCommand{BulletItem} above.
-\end{detail}
-
-\GapNoBreak
-\Item
-This is an \CodeCommand{Item}, which has no bullet.
-Note the alignment with the \CodeCommand{BulletItem} above.
-\begin{detail}
-\SubItem
-This is a \CodeCommand{SubItem}.
-\end{detail}
-
-\GapNoBreak
-\NumberedItem{[16]}
-This is a \CodeCommand{NumberedItem}.
-Note the alignment with the \CodeCommand{SubBulletItem} above.
-
-\GapNoBreak
-\NumberedItem{{\CharSpace}[6]}
-This is a \CodeCommand{NumberedItem} with a \CodeCommand{CharSpace} in its argument for padding shorter numbers.
-Note the alignment with the \CodeCommand{NumberedItem} above.
-
-\BigGap
-\textbf{Usage Notes}
-
-\GapNoBreak
-\BulletItem
-New Lines and Paragraphs
-\begin{detail}
-\SubBulletItem
-To create a new line within the same paragraph (i.e., with the same indentation), use \CodeCommand{newline} instead of \CodeCommand{\textbackslash}.
-The latter will not work because it breaks the long table.
-\SubBulletItem
-To create a new paragraph, use \CodeCommand{par} or simply leave an empty line.
-Paragraph indentations (from
-\CodeCommand{Item},
-\CodeCommand{SubItem},
-\CodeCommand{BulletItem},
-\CodeCommand{SubBulletItem},
-etc.) do not carry across different paragraphs.
-\end{detail}
-
-\Gap
-\BulletItem
-Vertical Spacing Between Items
-\begin{detail}
-\SubBulletItem
-Use \CodeCommand{Gap} or \CodeCommand{GapNoBreak} to insert a small vertical space between items within the same section.
-\SubBulletItem
-Use \CodeCommand{BigGap} or \CodeCommand{BigGapNoBreak} to insert a bigger vertical space between items within the same section.
-\SubBulletItem
-The ``NoBreak'' versions prevent page breaking.
-\end{detail}
-
-\Gap
-\BulletItem
-Dates
-\begin{detail}
-\SubBulletItem
-Use
-\CodeCommand{DatestampYMD\{YYYY\}\{MM\}\{DD\}},
-\CodeCommand{DatestampYM\{YYYY\}\{MM\}}, and
-\CodeCommand{DatestampY\{YYYY\}}
-to specify dates.
-\SubBulletItem
-Change the date format option passed to the document class to adjust how dates are displayed throughout the document:
-MMMyyyy (``Dec~2010''),
-ddMMMyyyy (``31~Dec~2010''),
-MMMMyyyy (``December~2010''),
-ddMMMMyyyy (``31~December~2010''),
-yyyyMMdd (``2010-12-31''),
-yyyyMM (``2010-12''),
-yyyy (``2010'').
-\end{detail}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% MULTILINGUAL UNICODE EXAMPLES %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section
+\Section
 {Multilingual Unicode Examples}
 {Multilingual Unicode Examples}
 {PDF:MultilingualUnicodeExamples}
@@ -676,8 +505,8 @@ Assortment of unicode characters from
 \href{http://www.ltg.ed.ac.uk/~richard/unicode-sample.html}
 {http://www.ltg.ed.ac.uk/{\TildeSymbol}richard/unicode-sample.html}
 
-\begin{detail}
-\SubItem
+\begin{Detail}
+\Item
 \textbf{Latin Extended-A}
 Ā ā Ă ă Ą ą Ć ć Ĉ ĉ Ċ ċ Č č Ď ď Đ đ Ē ē Ĕ ĕ Ė ė Ę ę Ě ě Ĝ ĝ Ğ ğ Ġ ġ Ģ ģ Ĥ ĥ Ħ ħ Ĩ ĩ Ī ī Ĭ ĭ Į į İ ı Ĳ ĳ Ĵ ĵ
 \textbf{Latin Extended-B}
@@ -696,9 +525,170 @@ Assortment of unicode characters from
 \textbf{Thai}
 {\UseSecondaryFont
 ก ข ฃ ค ฅ ฆ ง จ ฉ ช ซ ฌ ญ ฎ ฏ ฐ ฑ ฒ ณ ด ต ถ ท ธ น บ ป ผ ฝ พ ฟ ภ ม ย ร ฤ ล ฦ ว ศ ษ ส ห ฬ อ ฮ ฯ ะ ั า ำ ิ}
-\end{detail}
+\end{Detail}
 
-\end{body}
+% Manual page break.
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% THIS IS A SECTION WITH USAGE NOTES %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Declare a new group to limit the scope of \color to this section.
+\begingroup
+\color{red}
+
+\Section
+{This is a\newline
+Section\newline
+With\newline
+Usage Notes}
+{This is a Section With Usage Notes (For PDF Bookmark)}
+{PDF:ThisIsASectionWithUsageNotes:ForPDFLink}
+
+\SubSection
+{This is a SubSection}
+{This is a SubSection (For PDF Bookmark)}
+{PDF:ThisIsASubSection:ForPDFLink}
+
+\Gap
+\BulletItem
+Use \CodeCommand{Section\{a\}\{b\}\{c\}} and
+\CodeCommand{SubSection\{a\}\{b\}\{c\}}
+to create sections and subsections, where
+\Code{a} is the heading displayed on the page,
+\Code{b} is the PDF bookmark heading, and
+\Code{c} is the internal PDF link (must be unique).
+Sections and subsections will appear in the PDF bookmarks.
+Note the CamelCase command names.
+
+\Gap
+\BulletItem
+Use
+\CodeCommand{Entry},
+\CodeCommand{BulletItem},
+\CodeCommand{SubBulletItem},
+\CodeCommand{Item},
+\CodeCommand{SubItem},
+\CodeCommand{NumberedItem},
+etc.,
+to create entries in the main body of the CV.
+
+\Gap
+\BulletItem
+Enclose entry details between
+\CodeCommand{begin\{Detail\}} and
+\CodeCommand{end\{Detail\}}
+so that they are typeset in a smaller font.
+\begin{Detail}
+\Item
+This is an example of entry detail text enclosed in a \Code{Detail} environment.
+\end{Detail}
+
+\Gap
+\BulletItem
+Use \CodeCommand{Gap} and \CodeCommand{BigGap} to insert vertical spaces between entries to improve layout.
+
+\BigGap
+\SubSection
+{This is Another SubSection}
+{This is Another Subsection (For PDF Bookmark)}
+{PDF:ThisIsAnotherSubSection:ForPDFLink}
+
+\Gap
+\Entry
+This is a plain \CodeCommand{Entry},
+followed by an \CodeCommand{hfill} and a date range
+\hfill
+\DatestampYM{2015}{10} --
+\DatestampYM{2015}{12}
+
+\Gap
+\BulletItem
+This is a \CodeCommand{BulletItem}.
+\Item
+This is an \CodeCommand{Item}, which has no bullet.
+Note the alignment with the \CodeCommand{BulletItem} above.
+
+\Gap
+\SubBulletItem
+This is a \CodeCommand{SubBulletItem}.
+\SubItem
+This is a \CodeCommand{SubItem}, which has no bullet.
+Note the alignment with the \CodeCommand{SubBulletItem} above.
+
+\Gap
+\NumberedItem{[42]}
+This is a \CodeCommand{NumberedItem}.
+Change the value of the macro \CodeCommand{MaxNumberedItem} to adjust the indentation width.
+
+\BigGap
+\SubSection
+{Line, Paragraph, and Page Breaks}
+{Line, Paragraph, and Page Breaks (For PDF Bookmark)}
+{PDF:LineParagraphAndPageBreaks:ForPDFLink}
+
+\Gap
+\BulletItem
+To create a new line within the same paragraph (i.e., preserving the same paragraph indentation), use \CodeCommand{newline} instead of \CodeCommand{\textbackslash};
+the latter will reset the paragraph indentation.
+
+\Gap
+\BulletItem
+To create a new paragraph, use \CodeCommand{par} or simply leave an empty line.
+Paragraph indentations (from
+\CodeCommand{Entry},
+\CodeCommand{BulletItem},
+\CodeCommand{SubBulletItem},
+\CodeCommand{Item},
+\CodeCommand{SubItem},
+\CodeCommand{NumberedItem},
+etc.) do not carry across different paragraphs.
+
+\Gap
+\BulletItem
+To create a new page, use \CodeCommand{newpage}.
+
+\BigGap
+\SubSection
+{Dates}
+{Dates (For PDF Bookmark)}
+{PDF:Dates:ForPDFLink}
+
+\Gap
+\BulletItem
+Use the following macros to specify and display dates consistently:
+\SubBulletItem
+\CodeCommand{DatestampYMD\{yyyy\}\{MM\}\{dd\}}
+(e.g., \CodeCommand{DatestampYMD\{2008\}\{01\}\{15\}})
+\SubBulletItem
+\CodeCommand{DatestampYM\{yyyy\}\{MM\}}
+(e.g., \CodeCommand{DatestampYM\{2008\}\{01\}})
+\SubBulletItem
+\CodeCommand{DatestampY\{yyyy\}}
+(e.g., \CodeCommand{DatestampY\{2008\}})
+
+\Gap
+\BulletItem
+Change the date format option passed to the document class to adjust how dates are displayed throughout the document:
+\SubBulletItem
+\Code{MMMyyyy} (``Jan~2008'')
+\SubBulletItem
+\Code{ddMMMyyyy} (``15~Jan~2008'')
+\SubBulletItem
+\Code{MMMMyyyy} (``January~2008'')
+\SubBulletItem
+\Code{ddMMMMyyyy} (``15~January~2008'')
+\SubBulletItem
+\Code{yyyyMMdd} (``2008-01-15'')
+\SubBulletItem
+\Code{yyyyMM} (``2008-01'')
+\SubBulletItem
+\Code{yyyy} (``2008'')
+
+\endgroup
+
+\end{Body}
 
 %%%%%%%%%%%
 % CV NOTE %
@@ -706,7 +696,6 @@ Assortment of unicode characters from
 
 \UseNoteFont%
 \null\hfill%
-[\textit{\CVNote}]%
-\hspace{2.0mm}\null
+[\textit{\CVNote}]
 
 \end{document}

@@ -11,17 +11,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{simpleresumecv}[2016/01/23 Simple Resume CV https://github.com/zachscrivena/simple-resume-cv]
+\ProvidesClass{simpleresumecv}[2016/12/18 Simple Resume CV https://github.com/zachscrivena/simple-resume-cv]
 
 \DeclareOption{a4paper}{\PassOptionsToClass{\CurrentOption}{article}}
 \DeclareOption{letterpaper}{\PassOptionsToClass{\CurrentOption}{article}}
 
+% Run in non-stop mode.
+\DeclareOption{nonstopmode}{\nonstopmode}
+
 % Draft mode.
 \newcommand{\TypesetInDraftMode}{0}
-\DeclareOption{draft}{\renewcommand{\TypesetInDraftMode}{1}}
-
-% Run in non-stop mode
-\DeclareOption{nonstop}{\nonstopmode}
+\DeclareOption{draftmode}{\renewcommand{\TypesetInDraftMode}{1}}
 
 % Datestamp format (default): {yyyy}{MM}{dd} ---> MMM yyyy (e.g., Dec 2010).
 \newcommand{\DatestampYMD}[3]{\mbox{\ShortMonth{#2} #1}}
@@ -81,9 +81,6 @@ includefoot]{geometry}
 
 % PDF settings and properties.
 \RequirePackage{hyperref}
-
-% Long table for page layout.
-\RequirePackage{longtable}
 
 % Hyphenation: Disabled.
 \RequirePackage[none]{hyphenat}
@@ -191,16 +188,15 @@ BoldItalicFont=FreeSerifBoldItalic]
 \AtEndDocument{\null\label{LastPage}}
 \newcommand{\PageKOfN}{{\UseHeaderFooterFont{Page}~\thepage~of~\pageref{LastPage}}}
 \newcommand{\DraftStamp}{{\UseHeaderFooterFont\color{red}DRAFT~\Timestamp}}
-\newcommand{\ExtraMargin}{\hspace{2.0mm}}
 
 \ifnum\TypesetInDraftMode=0
 \newcommand{\HeaderText}{}
 \newcommand{\FooterText}{\hfill\PageKOfN\hfill}
 \else
 \newcommand{\HeaderText}{}
-\newcommand{\FooterText}{\null\ExtraMargin\hphantom{\DraftStamp}\hfill%
+\newcommand{\FooterText}{\null\hphantom{\DraftStamp}\hfill%
 \PageKOfN\hfill%
-\DraftStamp\ExtraMargin\null}
+\DraftStamp\null}
 \fi
 
 \def\ps@plain{%
@@ -215,102 +211,162 @@ BoldItalicFont=FreeSerifBoldItalic]
 \setlength{\parindent}{0in} % No indentation at the beginning of each paragraph.
 \setlength{\parskip}{0in} % No vertical space between paragraphs.
 
+% Avoid bad page breaks within paragraphs.
+\widowpenalties 1 10000
+\clubpenalties 1 10000
+\raggedbottom
+
+% Avoid overfull lines.
+\sloppy
+
 % Footnotes: Use symbols instead of numbers for labels.
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
-% Macro: title (name).
-\renewcommand{\title}[1]{%
-\pdfbookmark[1]{#1}{#1}%
-\par\begin{center}%
-\par\UseTitleFont%
-{#1}%
-\par\end{center}%
-\par\vspace{-1.75em}\par}
+% Macro: Title (name).
+\newcommand{\Title}[1]{%
+\par\pdfbookmark[1]{#1}{#1}%
+\begingroup\centering%
+\UseTitleFont{#1}%
+\par\endgroup\par}
 
-% Macro: subtitle (personal information below name).
-\newenvironment{subtitle}
-{\par\begin{center}%
-\par\UseSubTitleFont}
-{\par\end{center}\par}
+% Macro: SubTitle (personal information below name).
+\newenvironment{SubTitle}
+{\par\vspace{0.25\baselineskip}%
+\begingroup\centering%
+\UseSubTitleFont}
+{\par\endgroup\par}
 
-% Macro: body (rest of the document).
-\newenvironment{body}
-{\par\vspace{-1em}\par
-\begin{longtable}{p{0.15\textwidth}p{0.80\textwidth}}}
-{\par\end{longtable}\par}
+% Macro: Body (rest of the document).
+\newenvironment{Body}
+{%
+\par\vspace{1.5\baselineskip}%
+\begin{list}
+{}
+{\setlength\leftmargin{1.2in}%
+\setlength\rightmargin{0in}%
+\setlength\labelwidth{1.2in}%
+\setlength\labelsep{0in}%
+\setlength\listparindent{0in}%
+\setlength\itemindent{0in}%
+\setlength\parskip{0in}%
+\setlength\topsep{0in}%
+\setlength\parsep{0in}%
+\setlength\itemsep{0.85\baselineskip}%
+\setlength\partopsep{0in}%
+%\raggedright%
+}%
+}
+{%
+\end{list}%
+\par%
+}
 
-% Macro: section (new section for Education, Research Experience, etc.).
-\renewcommand{\section}[3]{\\[-1em]\pdfbookmark[2]{#2}{#3}\\%
-{\UseSectionFont\raggedright\MakeUppercase{#1}}%
-&}
+% Macro: Gap (vertical gap between items in the same section).
+\newcommand{\Gap}{\par\vspace{0.25\baselineskip}\par}
 
-% Macro: subsection.
-\renewcommand{\subsection}[3]{\par~\vskip-\baselineskip%
-\pdfbookmark[3]{#2}{#3}\par%
+% Macro: BigGap (big vertical gap between items in the same section).
+\newcommand{\BigGap}{\par\vspace{0.50\baselineskip}\par}
+
+% Macro: Section (new section for Education, Research Experience, etc.).
+\newcommand{\Section}[3]
+{\par\pdfbookmark[2]{#2}{#3}%
+\item[\smash{\parbox[t]{1.2in}{\UseSectionFont\raggedright\MakeUppercase{#1}}}]%
+\par}
+
+% Macro: SubSection.
+\newcommand{\SubSection}[3]
+{\par\pdfbookmark[3]{#2}{#3}%
 {\UseSubSectionFont\raggedright\MakeUppercase{#1}}%
-\vspace{0.225\baselineskip}}
+\par}
 
-% Macro: BigGap, BigGapNoBreak (big vertical gap between items in the same section).
-\newcommand{\BigGap}{\\[-1.75mm]~&}
-\newcommand{\BigGapNoBreak}{\par\vspace{2.45mm}\par}
-
-% Macro: Gap, GapNoBreak (vertical gap between items in the same section).
-\newcommand{\Gap}{\\[-3.5mm]~&}
-\newcommand{\GapNoBreak}{\par\vspace{0.7mm}\par}
-
-% Macro: detail (text in smaller font under an item).
-\newenvironment{detail}
+% Macro: Detail (text in smaller font under an item).
+\newenvironment{Detail}
 {\par\begingroup\UseDetailFont}
 {\par\endgroup\par}
 
 % Macro: BulletItem.
-\newsavebox{\BulletItemIndentation}
-\newlength{\BulletItemIndentationWidth}
-\newcommand{\BulletItem}{\par%
-\savebox{\BulletItemIndentation}{\hspace{1.5mm}\BulletSymbol\hspace{1.25mm}}%
-\settowidth{\BulletItemIndentationWidth}{\usebox{\BulletItemIndentation}}%
-\noindent\hangafter=1\hangindent=\BulletItemIndentationWidth\ignorespaces%
-\usebox{\BulletItemIndentation}\ignorespaces}
+\newsavebox{\BulletItemIndentBox}
+\newlength{\BulletItemIndentWidth}
+%
+\newcommand{\BulletItem}
+{\par\vspace{0\baselineskip}%
+\savebox{\BulletItemIndentBox}{\hspace{1.5mm}\BulletSymbol\hspace{1.5mm}}%
+\settowidth{\BulletItemIndentWidth}{\usebox{\BulletItemIndentBox}}%
+\parshape 2%
+\labelwidth \linewidth%
+\dimexpr\labelwidth+\BulletItemIndentWidth\relax \dimexpr\linewidth-\BulletItemIndentWidth\relax%
+\usebox{\BulletItemIndentBox}%
+\ignorespaces%
+}
 
 % Macro: SubBulletItem.
-\newsavebox{\SubBulletItemIndentation}
-\newlength{\SubBulletItemIndentationWidth}
-\newcommand{\SubBulletItem}{\par%
-\savebox{\SubBulletItemIndentation}{\hspace{5.6mm}\SubBulletSymbol\hspace{1.25mm}}%
-\settowidth{\SubBulletItemIndentationWidth}{\usebox{\SubBulletItemIndentation}}%
-\noindent\hangafter=1\hangindent=\SubBulletItemIndentationWidth\ignorespaces%
-\usebox{\SubBulletItemIndentation}\ignorespaces}
+\newsavebox{\SubBulletItemIndentBox}
+\newlength{\SubBulletItemIndentWidth}
+%
+\newcommand{\SubBulletItem}
+{\par\vspace{0\baselineskip}%
+\savebox{\SubBulletItemIndentBox}{\hspace{5.6mm}\SubBulletSymbol\hspace{1.5mm}}%
+\settowidth{\SubBulletItemIndentWidth}{\usebox{\SubBulletItemIndentBox}}%
+\parshape 2%
+\labelwidth \linewidth%
+\dimexpr\labelwidth+\SubBulletItemIndentWidth\relax \dimexpr\linewidth-\SubBulletItemIndentWidth\relax%
+\usebox{\SubBulletItemIndentBox}%
+\ignorespaces%
+}
 
-% Macro: Item.
-\newsavebox{\ItemIndentation}
-\newlength{\ItemIndentationWidth}
-\newcommand{\Item}{\par%
-\savebox{\ItemIndentation}{\hphantom{\hspace{1.5mm}\BulletSymbol\hspace{1.25mm}}}%
-\settowidth{\ItemIndentationWidth}{\usebox{\ItemIndentation}}%
-\noindent\hangafter=1\hangindent=\ItemIndentationWidth\ignorespaces%
-\usebox{\ItemIndentation}\ignorespaces}
+% Macro: Entry.
+\newcommand{\Entry}
+{\par\vspace{0\baselineskip}%
+\parshape 1%
+\labelwidth \linewidth%
+\ignorespaces%
+}
 
-% Macro: SubItem.
-\newsavebox{\SubItemIndentation}
-\newlength{\SubItemIndentationWidth}
-\newcommand{\SubItem}{\par%
-\savebox{\SubItemIndentation}{\hphantom{\hspace{1.5mm}\BulletSymbol\hspace{1.25mm}}}%
-\settowidth{\SubItemIndentationWidth}{\usebox{\SubItemIndentation}}%
-\noindent\hangafter=1\hangindent=\SubItemIndentationWidth\ignorespaces%
-\usebox{\SubItemIndentation}\ignorespaces}
+% Macro: Item (aligns horizontally with BulletItem).
+\newcommand{\Item}
+{\par\vspace{0\baselineskip}%
+\savebox{\BulletItemIndentBox}{\hphantom{\hspace{1.5mm}\BulletSymbol\hspace{1.5mm}}}%
+\settowidth{\BulletItemIndentWidth}{\usebox{\BulletItemIndentBox}}%
+\parshape 2%
+\labelwidth \linewidth%
+\dimexpr\labelwidth+\BulletItemIndentWidth\relax \dimexpr\linewidth-\BulletItemIndentWidth\relax%
+\usebox{\BulletItemIndentBox}%
+\ignorespaces%
+}
+
+% Macro: SubItem (aligns horizontally with SubBulletItem).
+\newcommand{\SubItem}
+{\par\vspace{0\baselineskip}%
+\savebox{\SubBulletItemIndentBox}{\hphantom{\hspace{5.6mm}\SubBulletSymbol\hspace{1.5mm}}}%
+\settowidth{\SubBulletItemIndentWidth}{\usebox{\SubBulletItemIndentBox}}%
+\parshape 2%
+\labelwidth \linewidth%
+\dimexpr\labelwidth+\SubBulletItemIndentWidth\relax \dimexpr\linewidth-\SubBulletItemIndentWidth\relax%
+\usebox{\SubBulletItemIndentBox}%
+\ignorespaces%
+}
 
 % Macro: NumberedItem.
-\newsavebox{\NumberedItemIndentation}
-\newlength{\NumberedItemIndentationWidth}
-\newcommand{\NumberedItem}[1]{\par%
-\savebox{\NumberedItemIndentation}{{#1}\hspace{2.3mm}}%
-\settowidth{\NumberedItemIndentationWidth}{\usebox{\NumberedItemIndentation}}%
-\noindent\hangafter=1\hangindent=\NumberedItemIndentationWidth\ignorespaces%
-\usebox{\NumberedItemIndentation}\ignorespaces}
-
-% Macro: CharSpace (for aligning single-digit numbers).
-\newlength{\CharWidth}
-\newcommand{\CharSpace}{\settowidth{\CharWidth}{8}\hspace{\CharWidth}}
+\newcommand{\MaxNumberedItem}{[88]}
+%
+\newsavebox{\MaxNumberedItemIndentBox}
+\newlength{\MaxNumberedItemIndentWidth}
+\newsavebox{\NumberedItemIndentBox}
+\newlength{\NumberedItemIndentWidth}
+%
+\newcommand{\NumberedItem}[1]
+{\par\vspace{0\baselineskip}%
+\savebox{\MaxNumberedItemIndentBox}{\hspace{1.5mm}{\MaxNumberedItem}\hspace{2.5mm}}%
+\settowidth{\MaxNumberedItemIndentWidth}{\usebox{\MaxNumberedItemIndentBox}}%
+\savebox{\NumberedItemIndentBox}{\hspace{1.5mm}{#1}\hspace{2.5mm}}%
+\settowidth{\NumberedItemIndentWidth}{\usebox{\NumberedItemIndentBox}}%
+\parshape 2%
+\labelwidth \linewidth%
+\dimexpr\labelwidth+\MaxNumberedItemIndentWidth\relax \dimexpr\linewidth-\MaxNumberedItemIndentWidth\relax%
+\hspace{\dimexpr\MaxNumberedItemIndentWidth-\NumberedItemIndentWidth\relax}%
+\usebox{\NumberedItemIndentBox}%
+\ignorespaces%
+}
 
 % Macro: Hide.
 \newcommand{\Hide}[1]{}
