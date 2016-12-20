@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{simpleresumecv}[2016/12/18 Simple Resume CV https://github.com/zachscrivena/simple-resume-cv]
+\ProvidesClass{simpleresumecv}[2016/12/20 Simple Resume CV https://github.com/zachscrivena/simple-resume-cv]
 
 \DeclareOption{a4paper}{\PassOptionsToClass{\CurrentOption}{article}}
 \DeclareOption{letterpaper}{\PassOptionsToClass{\CurrentOption}{article}}
@@ -23,43 +23,43 @@
 \newcommand{\TypesetInDraftMode}{0}
 \DeclareOption{draftmode}{\renewcommand{\TypesetInDraftMode}{1}}
 
-% Datestamp format (default): {yyyy}{MM}{dd} ---> MMM yyyy (e.g., Dec 2010).
+% Datestamp format (default): {yyyy}{MM}{dd} ---> MMM yyyy (e.g., Jan 2008).
 \newcommand{\DatestampYMD}[3]{\mbox{\ShortMonth{#2} #1}}
 \newcommand{\DatestampYM}[2]{\mbox{\ShortMonth{#2} #1}}
 \newcommand{\DatestampY}[1]{#1}
 \DeclareOption{MMMyyyy}{} % default
 
-% Datestamp format: {yyyy}{MM}{dd} ---> dd MMM yyyy (e.g., 31 Dec 2010).
+% Datestamp format: {yyyy}{MM}{dd} ---> dd MMM yyyy (e.g., 15 Jan 2008).
 \DeclareOption{ddMMMyyyy}{%
 \renewcommand{\DatestampYMD}[3]{\mbox{#3 \ShortMonth{#2} #1}}
 \renewcommand{\DatestampYM}[2]{\mbox{\ShortMonth{#2} #1}}
 \renewcommand{\DatestampY}[1]{#1}}
 
-% Datestamp format: {yyyy}{MM}{dd} ---> MMMM yyyy (e.g., December 2010).
+% Datestamp format: {yyyy}{MM}{dd} ---> MMMM yyyy (e.g., January 2008).
 \DeclareOption{MMMMyyyy}{%
 \renewcommand{\DatestampYMD}[3]{\mbox{\LongMonth{#2} #1}}
 \renewcommand{\DatestampYM}[2]{\mbox{\LongMonth{#2} #1}}
 \renewcommand{\DatestampY}[1]{#1}}
 
-% Datestamp format: {yyyy}{MM}{dd} ---> dd MMMM yyyy (e.g., 31 December 2010).
+% Datestamp format: {yyyy}{MM}{dd} ---> dd MMMM yyyy (e.g., 15 January 2008).
 \DeclareOption{ddMMMMyyyy}{%
 \renewcommand{\DatestampYMD}[3]{\mbox{#3 \LongMonth{#2} #1}}
 \renewcommand{\DatestampYM}[2]{\mbox{\LongMonth{#2} #1}}
 \renewcommand{\DatestampY}[1]{#1}}
 
-% Datestamp format: {yyyy}{MM}{dd} ---> yyyy-MM-dd (e.g., 2010-12-31).
+% Datestamp format: {yyyy}{MM}{dd} ---> yyyy-MM-dd (e.g., 2008-01-15).
 \DeclareOption{yyyyMMdd}{%
 \renewcommand{\DatestampYMD}[3]{\mbox{#1-#2-#3}}
 \renewcommand{\DatestampYM}[2]{\mbox{#1-#2}}
 \renewcommand{\DatestampY}[1]{#1}}
 
-% Datestamp format: {yyyy}{MM}{dd} ---> yyyy-MM (e.g., 2010-12).
+% Datestamp format: {yyyy}{MM}{dd} ---> yyyy-MM (e.g., 2008-01).
 \DeclareOption{yyyyMM}{%
 \renewcommand{\DatestampYMD}[3]{\mbox{#1-#2}}
 \renewcommand{\DatestampYM}[2]{\mbox{#1-#2}}
 \renewcommand{\DatestampY}[1]{#1}}
 
-% Datestamp format: {yyyy}{MM}{dd} ---> yyyy (e.g., 2010).
+% Datestamp format: {yyyy}{MM}{dd} ---> yyyy (e.g., 2008).
 \DeclareOption{yyyy}{%
 \renewcommand{\DatestampYMD}[3]{#1}
 \renewcommand{\DatestampYM}[2]{#1}
@@ -91,13 +91,10 @@ includefoot]{geometry}
 % {\color{MyDarkBlue}This text is dark blue}
 
 % Current date and time.
-\RequirePackage[yyyymmdd,24hr]{datetime}
-\renewcommand{\dateseparator}{-}
-\settimeformat{xxivtime}
-% {\today}~{\currenttime}
+\RequirePackage{datetime2}
 
 % Timestamp.
-\newcommand{\Timestamp}{{\yyyymmdddate\today}~{\currenttime}}
+\newcommand{\Timestamp}{{\DTMnow}}
 
 % Abbreviations for months.
 \newcommand{\LongMonth}[1]{%
