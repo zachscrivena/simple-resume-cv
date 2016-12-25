@@ -1,5 +1,4 @@
-simple-resume-cv
-================
+# simple-resume-cv
 
 Template for a simple resume or curriculum vitae (CV), in XeLaTeX.
 
@@ -39,7 +38,7 @@ Instructions for compiling the document (TeX &rarr;(XeLaTeX)&rarr; PDF):
 This is free and unencumbered software released into the public domain.
 For more information, please see the file `LICENSE` or refer to <http://unlicense.org>.
 
-## Recent Changes
+## Recent Major Changes
 
 - Release v3.0
 	- Provides better support for other packages (e.g., biblatex) by removing the use of the longtable package for layout.

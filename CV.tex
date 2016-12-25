@@ -4,7 +4,7 @@
 % vim: set fenc=utf-8
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% SIMPLE-RESUME-CV
+%% CV.tex
 %% <https://github.com/zachscrivena/simple-resume-cv>
 %% This is free and unencumbered software released into the
 %% public domain; see <http://unlicense.org> for details.
@@ -202,7 +202,7 @@ Climate change, lasers, statistical analysis, data analytics.
 \begingroup
 \renewcommand{\MaxNumberedItem}{[88]}
 
-\Gap
+\BigGap
 \NumberedItem{[10]}
 \href{http://www.example.com/my-paper-doi-5}
 {\underline{J.~Doe}, J.~Citizen, and A.~Yone,
@@ -236,7 +236,7 @@ pp.~330--352,
 \begingroup
 \renewcommand{\MaxNumberedItem}{[8888]}
 
-\Gap
+\BigGap
 \NumberedItem{[1000]}
 \href{http://www.example.com/my-paper-doi-3}
 {\underline{J.~Doe}, J.~Citizen, and A.~Yone,
@@ -455,7 +455,6 @@ Microsoft Word,
 Microsoft Excel,
 Microsoft PowerPoint.
 
-
 %%%%%%%%%%%%%%%
 %% INTERESTS %%
 %%%%%%%%%%%%%%%
@@ -568,7 +567,7 @@ Usage Notes}
 {This is a SubSection (For PDF Bookmark)}
 {PDF:ThisIsASubSection:ForPDFLink}
 
-\Gap
+\BigGap
 \BulletItem
 Use \CodeCommand{Section\{a\}\{b\}\{c\}} and
 \CodeCommand{SubSection\{a\}\{b\}\{c\}}
@@ -612,7 +611,7 @@ Use \CodeCommand{Gap} and \CodeCommand{BigGap} to insert vertical spaces between
 {This is Another Subsection (For PDF Bookmark)}
 {PDF:ThisIsAnotherSubSection:ForPDFLink}
 
-\Gap
+\BigGap
 \Entry
 This is a plain \CodeCommand{Entry},
 followed by an \CodeCommand{hfill} and a date range
@@ -645,7 +644,7 @@ Change the value of the macro \CodeCommand{MaxNumberedItem} to adjust the indent
 {Line, Paragraph, and Page Breaks (For PDF Bookmark)}
 {PDF:LineParagraphAndPageBreaks:ForPDFLink}
 
-\Gap
+\BigGap
 \BulletItem
 To create a new line within the same paragraph (i.e., preserving the same paragraph indentation), use \CodeCommand{newline} instead of \CodeCommand{\textbackslash};
 the latter will reset the paragraph indentation.
@@ -672,7 +671,7 @@ To create a new page, use \CodeCommand{newpage}.
 {Dates (For PDF Bookmark)}
 {PDF:Dates:ForPDFLink}
 
-\Gap
+\BigGap
 \BulletItem
 Use the following macros to specify and display dates consistently:
 \SubBulletItem
@@ -711,6 +710,7 @@ Change the date format option passed to the document class to adjust how dates a
 % CV NOTE %
 %%%%%%%%%%%
 
+\BigGap
 \UseNoteFont%
 \null\hfill%
 [\textit{\CVNote}]

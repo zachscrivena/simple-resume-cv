@@ -4,14 +4,15 @@
 % vim: set fenc=utf-8
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% SIMPLE-RESUME-CV
+%% simpleresumecv.cls
 %% <https://github.com/zachscrivena/simple-resume-cv>
 %% This is free and unencumbered software released into the
 %% public domain; see <http://unlicense.org> for details.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{simpleresumecv}[2016/12/20 Simple Resume CV https://github.com/zachscrivena/simple-resume-cv]
+
+\ProvidesClass{simpleresumecv}[2016/12/25 Simple Resume CV https://github.com/zachscrivena/simple-resume-cv]
 
 \DeclareOption{a4paper}{\PassOptionsToClass{\CurrentOption}{article}}
 \DeclareOption{letterpaper}{\PassOptionsToClass{\CurrentOption}{article}}
@@ -248,7 +249,7 @@ BoldItalicFont=FreeSerifBoldItalic]
 \setlength\parskip{0in}%
 \setlength\topsep{0in}%
 \setlength\parsep{0in}%
-\setlength\itemsep{0.85\baselineskip}%
+\setlength\itemsep{0.90\baselineskip}%
 \setlength\partopsep{0in}%
 %\raggedright%
 }%
@@ -259,10 +260,10 @@ BoldItalicFont=FreeSerifBoldItalic]
 }
 
 % Macro: Gap (vertical gap between items in the same section).
-\newcommand{\Gap}{\par\vspace{0.25\baselineskip}\par}
+\newcommand{\Gap}{\par\vspace{0.45mm}\par}
 
 % Macro: BigGap (big vertical gap between items in the same section).
-\newcommand{\BigGap}{\par\vspace{0.50\baselineskip}\par}
+\newcommand{\BigGap}{\par\vspace{2.25mm}\par}
 
 % Macro: Section (new section for Education, Research Experience, etc.).
 \newcommand{\Section}[3]
