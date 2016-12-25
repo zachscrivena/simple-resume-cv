@@ -2,6 +2,12 @@
 
 Template for a simple resume or curriculum vitae (CV), in XeLaTeX.
 
+**Website:**<br>
+https://github.com/zachscrivena/simple-resume-cv
+
+**Lead author:**<br>
+Zach Scrivena (zachscrivena@gmail.com)
+
 **Compiled sample document:**<br>
 [CV.pdf](https://raw.githubusercontent.com/zachscrivena/simple-resume-cv/master/CV.pdf)
 
