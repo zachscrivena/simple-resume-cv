@@ -312,6 +312,21 @@ BoldItalicFont=FreeSerifBoldItalic]
 \ignorespaces%
 }
 
+% Macro: SubSubBulletItem.
+\newsavebox{\SubSubBulletItemIndentBox}
+\newlength{\SubSubBulletItemIndentWidth}
+%
+\newcommand{\SubSubBulletItem}
+{\par\vspace{0\baselineskip}%
+\savebox{\SubSubBulletItemIndentBox}{\hspace{9.7mm}\textopenbullet\hspace{1.5mm}}%
+\settowidth{\SubSubBulletItemIndentWidth}{\usebox{\SubSubBulletItemIndentBox}}%
+\parshape 2%
+\labelwidth \linewidth%
+\dimexpr\labelwidth+\SubSubBulletItemIndentWidth\relax \dimexpr\linewidth-\SubSubBulletItemIndentWidth\relax%
+\usebox{\SubSubBulletItemIndentBox}%
+\ignorespaces%
+}
+
 % Macro: Entry.
 \newcommand{\Entry}
 {\par\vspace{0\baselineskip}%
