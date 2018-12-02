@@ -374,6 +374,10 @@ President
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 \SubBulletItem
 Curabitur vitae laoreet velit, vel ultricies est. Nam nec elit ac ante facilisis ultrices.
+\SubSubBulletItem
+Wel turpis efficitur, non lacinia orci maximus.
+\SubSubBulletItem
+Proin rhoncus, felis vel hendrerit lacinia.
 \SubBulletItem
 Integer sit amet turpis dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at orci eu leo vulputate finibus sed et sem.
 \SubBulletItem
@@ -552,7 +556,7 @@ Assortment of unicode characters from
 
 % Declare a new group to limit the scope of \color to this section.
 \begingroup
-\color{red}
+\color{blue}
 
 \Section
 {This is a\newline
@@ -584,8 +588,10 @@ Use
 \CodeCommand{Entry},
 \CodeCommand{BulletItem},
 \CodeCommand{SubBulletItem},
+\CodeCommand{SubSubBulletItem},
 \CodeCommand{Item},
 \CodeCommand{SubItem},
+\CodeCommand{SubSubItem},
 \CodeCommand{NumberedItem},
 etc.,
 to create entries in the main body of the CV.
@@ -634,6 +640,13 @@ This is a \CodeCommand{SubItem}, which has no bullet.
 Note the alignment with the \CodeCommand{SubBulletItem} above.
 
 \Gap
+\SubSubBulletItem
+This is a \CodeCommand{SubSubBulletItem}.
+\SubSubItem
+This is a \CodeCommand{SubSubItem}, which has no bullet.
+Note the alignment with the \CodeCommand{SubSubBulletItem} above.
+
+\Gap
 \NumberedItem{[42]}
 This is a \CodeCommand{NumberedItem}.
 Change the value of the macro \CodeCommand{MaxNumberedItem} to adjust the indentation width.
@@ -656,8 +669,10 @@ Paragraph indentations (from
 \CodeCommand{Entry},
 \CodeCommand{BulletItem},
 \CodeCommand{SubBulletItem},
+\CodeCommand{SubSubBulletItem},
 \CodeCommand{Item},
 \CodeCommand{SubItem},
+\CodeCommand{SubSubItem},
 \CodeCommand{NumberedItem},
 etc.) do not carry across different paragraphs.
 

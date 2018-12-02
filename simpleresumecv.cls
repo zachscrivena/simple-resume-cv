@@ -177,9 +177,11 @@ BoldItalicFont=FreeSerifBoldItalic]
 \newcommand{\UseSubSectionFont}{\UseHeadingFont\fontsize{8.6pt}{10.3pt}\selectfont\bfseries}
 \newcommand{\UseDetailFont}{\normalfont\fontsize{8.6pt}{10.3pt}\selectfont}
 
-% Symbols (unicode).
+% Symbols (Unicode).
+% See: https://unicode-table.com/en/
 \newcommand{\BulletSymbol}{{\normalfont\fontsize{6.5}{7.8}\selectfont\raisebox{0.17em}{\char"25A0}}}
 \newcommand{\SubBulletSymbol}{{\normalfont\fontsize{6}{7.2}\selectfont\raisebox{0.17em}{\char"25CF}}}
+\newcommand{\SubSubBulletSymbol}{{\normalfont\fontsize{6}{7.2}\selectfont\raisebox{0.17em}{\char"25CB}}}
 \newcommand{\TildeSymbol}{{\normalfont\char"007E}}
 
 % Headers and footers: Blank header, page number in footer.
@@ -318,7 +320,7 @@ BoldItalicFont=FreeSerifBoldItalic]
 %
 \newcommand{\SubSubBulletItem}
 {\par\vspace{0\baselineskip}%
-\savebox{\SubSubBulletItemIndentBox}{\hspace{9.7mm}\textopenbullet\hspace{1.5mm}}%
+\savebox{\SubSubBulletItemIndentBox}{\hspace{9.7mm}\SubSubBulletSymbol\hspace{1.5mm}}%
 \settowidth{\SubSubBulletItemIndentWidth}{\usebox{\SubSubBulletItemIndentBox}}%
 \parshape 2%
 \labelwidth \linewidth%
@@ -356,6 +358,18 @@ BoldItalicFont=FreeSerifBoldItalic]
 \labelwidth \linewidth%
 \dimexpr\labelwidth+\SubBulletItemIndentWidth\relax \dimexpr\linewidth-\SubBulletItemIndentWidth\relax%
 \usebox{\SubBulletItemIndentBox}%
+\ignorespaces%
+}
+
+% Macro: SubSubItem (aligns horizontally with SubSubBulletItem).
+\newcommand{\SubSubItem}
+{\par\vspace{0\baselineskip}%
+\savebox{\SubSubBulletItemIndentBox}{\hphantom{\hspace{9.7mm}\SubSubBulletSymbol\hspace{1.5mm}}}%
+\settowidth{\SubSubBulletItemIndentWidth}{\usebox{\SubSubBulletItemIndentBox}}%
+\parshape 2%
+\labelwidth \linewidth%
+\dimexpr\labelwidth+\SubSubBulletItemIndentWidth\relax \dimexpr\linewidth-\SubSubBulletItemIndentWidth\relax%
+\usebox{\SubSubBulletItemIndentBox}%
 \ignorespaces%
 }
 
